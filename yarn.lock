@@ -1239,7 +1239,7 @@
 
 "@emotion/react@^11.10.6":
   version "11.10.6"
-  resolved "https://registry.npmjs.org/@emotion/react/-/react-11.10.6.tgz"
+  resolved "https://registry.yarnpkg.com/@emotion/react/-/react-11.10.6.tgz#dbe5e650ab0f3b1d2e592e6ab1e006e75fd9ac11"
   integrity sha512-6HT8jBmcSkfzO7mc+N1L9uwvOnlcGoix8Zn7srt+9ga0MjREo6lRpuVX0kzo6Jp6oTqDhREOFsygN6Ew4fEQbw==
   dependencies:
     "@babel/runtime" "^7.18.3"
@@ -1269,7 +1269,7 @@
 
 "@emotion/styled@^11.10.6":
   version "11.10.6"
-  resolved "https://registry.npmjs.org/@emotion/styled/-/styled-11.10.6.tgz"
+  resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-11.10.6.tgz#d886afdc51ef4d66c787ebde848f3cc8b117ebba"
   integrity sha512-OXtBzOmDSJo5Q0AFemHCfl+bUueT8BIcPSxu0EGTpGk6DmI5dnhSzQANm1e1ze0YZL7TDyAyy6s/b/zmGOS3Og==
   dependencies:
     "@babel/runtime" "^7.18.3"
@@ -7751,11 +7751,6 @@ react-scripts@5.0.1:
     workbox-webpack-plugin "^6.4.1"
   optionalDependencies:
     fsevents "^2.3.2"
-
-react-table@^7.8.0:
-  version "7.8.0"
-  resolved "https://registry.npmjs.org/react-table/-/react-table-7.8.0.tgz"
-  integrity sha512-hNaz4ygkZO4bESeFfnfOft73iBUj8K5oKi1EcSHPAibEydfsX2MyU6Z8KCr3mv3C9Kqqh71U+DhZkFvibbnPbA==
 
 react-transition-group@^4.4.5:
   version "4.4.5"
