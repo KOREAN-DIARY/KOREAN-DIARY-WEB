@@ -1,5 +1,11 @@
+import AudioPlayer from 'components/audio-player/AudioPlayer'
+
 const Form = () => {
-  return <div>form</div>
+  return (
+    <div>
+      <AudioPlayer />
+    </div>
+  )
 }
 
 export default Form
