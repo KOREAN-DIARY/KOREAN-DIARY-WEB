@@ -1,10 +1,10 @@
 import BaseLayout from 'components/common/base-layout/BaseLayout'
-import Calendar from 'components/main/calendar/Calendar'
+import MainLayout from 'components/main/main-layout/MainLayout'
 
 const Main = () => {
   return (
     <BaseLayout>
-      <Calendar />
+      <MainLayout />
     </BaseLayout>
   )
 }

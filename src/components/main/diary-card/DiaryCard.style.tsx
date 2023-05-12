@@ -8,8 +8,8 @@ export const Container = styled.div`
   text-align: center;
   background-color: var(--light-grey);
   border-radius: 1.5rem;
-  width: 20rem;
-  height: 13rem;
+  width: 100%;
+  height: 12.8125rem;
   padding: 1rem;
 `
 
