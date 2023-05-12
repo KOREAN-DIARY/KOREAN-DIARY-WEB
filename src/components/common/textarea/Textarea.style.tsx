@@ -4,7 +4,7 @@ export const Container = styled.textarea`
   width: 100%;
   font-size: 14px;
   text-align: left;
-  color: #666666;
+  color: var(--dark-grey);
   font-weight: bold;
   border: none;
   white-space: normal;
