@@ -21,6 +21,12 @@ export const HStack = styled.div`
   display: flex;
   justify-content: flex-end;
 `
+
 export const NextButton = styled.button`
   cursor: pointer;
+`
+
+export const DateContainer = styled.article`
+  display: flex;
+  width: 100%;
 `

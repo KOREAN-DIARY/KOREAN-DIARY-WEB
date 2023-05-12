@@ -5,7 +5,7 @@ export const StepperWrapper = styled.section`
   display: flex;
   justify-content: space-between;
   position: relative;
-  padding: 1rem;
+  padding: 1rem 0;
   & > .line {
     position: absolute;
     top: 2.5rem;
