@@ -51,6 +51,10 @@ const FormLayout = () => {
       <Stepper steps={steps} activeStep={activeStep} />
       <S.DateContainer>
         <DayIcon day={0} />
+        <S.DayText>
+          <S.Year>2023년</S.Year>
+          <S.Date>5월 12일</S.Date>
+        </S.DayText>
       </S.DateContainer>
       {renderStepComponent(activeStep)}
       <S.HStack>
