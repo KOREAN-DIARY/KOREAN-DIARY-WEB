@@ -5,11 +5,12 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   text-align: center;
+  gap: 0.75rem;
   background-color: var(--light-grey);
   border-radius: 1.5rem;
   width: 100%;
   height: 12.5rem;
-  padding: 1rem;
+  padding: 1.25rem;
 `
 
 export const DiaryText = styled.p`

@@ -4,7 +4,6 @@ export const Container = styled.article`
   display: flex;
   width: 100%;
   gap: 0.75rem;
-  margin: 1rem 0;
 `
 
 export const DayText = styled.div`
