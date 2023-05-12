@@ -1,8 +1,10 @@
 import styled from '@emotion/styled'
 
-export const Container = styled.textarea`
+export const Textarea = styled.textarea`
+  display: flex;
+  flex: 1;
   width: 100%;
-  font-size: 14px;
+  font-size: 0.875rem;
   text-align: left;
   color: var(--dark-grey);
   font-weight: bold;
@@ -11,7 +13,6 @@ export const Container = styled.textarea`
   resize: none;
   padding: 1rem;
   outline: none;
-  box-sizing: border-box;
   &::placeholder {
     color: var(--grey);
   }

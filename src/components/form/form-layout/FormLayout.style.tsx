@@ -1,9 +1,11 @@
 import styled from '@emotion/styled'
 
 export const Container = styled.section`
+  flex: 1;
   position: relative;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   flex-direction: column;
 `
