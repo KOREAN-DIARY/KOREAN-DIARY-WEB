@@ -5,5 +5,6 @@ export const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid var(--dark-grey);
+  border-bottom: 1px solid var(--grey);
+  padding: 0.25rem;
 `
