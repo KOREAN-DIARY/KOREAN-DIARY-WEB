@@ -1,4 +1,4 @@
-import Calendar from 'components/calendar/Calendar'
+import Calendar from 'components/main/calendar/Calendar'
 
 const Main = () => {
   return (

@@ -2,7 +2,7 @@ import { speak } from 'utils/text-to-speech'
 
 const AudioPlayer = () => {
   const playAudio = () => {
-    speak('여름에 해당하는 이미지를 찾으세요', window.speechSynthesis)
+    speak('Web Speech API 테스트 중입니다.', window.speechSynthesis)
   }
 
   return (

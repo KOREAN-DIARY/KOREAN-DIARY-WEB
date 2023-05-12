@@ -1,4 +1,4 @@
-import AudioPlayer from 'components/audio-player/AudioPlayer'
+import AudioPlayer from 'components/form/audio-player/AudioPlayer'
 
 const Form = () => {
   return (
