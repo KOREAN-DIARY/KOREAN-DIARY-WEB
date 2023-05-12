@@ -43,10 +43,17 @@ const FormLayout = () => {
   return (
     <S.container>
       <S.HStack>
-        <S.CloseIcon className="material-icons">close</S.CloseIcon>
+        <S.CloseButton>
+          <S.Icon className="material-icons">close</S.Icon>
+        </S.CloseButton>
       </S.HStack>
       <Stepper steps={steps} activeStep={activeStep} />
       {renderStepComponent(activeStep)}
+      <S.HStack>
+        <S.NextButton>
+          <S.Icon className="material-icons">arrow_forward</S.Icon>
+        </S.NextButton>
+      </S.HStack>
     </S.container>
   )
 }
