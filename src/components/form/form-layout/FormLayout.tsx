@@ -6,6 +6,7 @@ import Listening from 'components/form/listening/Listening'
 import Speaking from 'components/form/speaking/Speaking'
 import DayIcon from 'components/common/day-icon/DayIcon'
 import CloseModal from 'components/form/close-modal/CloseModal'
+import DayGroup from 'components/common/day-group/DayGroup'
 
 const activeStep = 1
 
@@ -50,13 +51,7 @@ const FormLayout = () => {
         </S.CloseButton>
       </S.HStack>
       <Stepper steps={steps} activeStep={activeStep} />
-      <S.DateContainer>
-        <DayIcon day={0} />
-        <S.DayText>
-          <S.Year>2023년</S.Year>
-          <S.Date>5월 12일</S.Date>
-        </S.DayText>
-      </S.DateContainer>
+      <DayGroup date="2023-05-08" />
       {renderStepComponent(activeStep)}
       <S.HStack>
         <S.NextButton>
