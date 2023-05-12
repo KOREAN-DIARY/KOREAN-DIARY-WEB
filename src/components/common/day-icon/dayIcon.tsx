@@ -2,34 +2,41 @@ import React from 'react'
 import * as S from './dayIcon.style'
 
 type DayIconProps = {
-  day: string
+  day: number
 }
 
-const dayIcon: React.FC<DayIconProps> = ({ day }) => {
+const dayTextList: string[] = ['일', '월', '화', '수', '목', '금', '토']
+
+const renderDayColor = (day: number): string => {
+  switch (day) {
+    case 0:
+      return 'purple'
+    case 1:
+      return 'red'
+    case 2:
+      return 'orange'
+    case 3:
+      return 'yellow'
+    case 4:
+      return 'green'
+    case 5:
+      return 'skyblue'
+    case 6:
+      return 'blue'
+
+    default:
+      return ''
+  }
+}
+
+const DayIcon = ({ day }: DayIconProps) => {
   return (
     <S.DayIcon>
-      <div className={day}>
-        {(() => {
-          switch (day) {
-            case 'mon':
-              return <p>월</p>
-            case 'tue':
-              return <p>화</p>
-            case 'wed':
-              return <p>수</p>
-            case 'thu':
-              return <p>목</p>
-            case 'fri':
-              return <p>금</p>
-            case 'sat':
-              return <p>토</p>
-            case 'sun':
-              return <p>일</p>
-          }
-        })()}
+      <div className={renderDayColor(day)}>
+        <p>{dayTextList[day]}</p>
       </div>
     </S.DayIcon>
   )
 }
 
-export default dayIcon
+export default DayIcon

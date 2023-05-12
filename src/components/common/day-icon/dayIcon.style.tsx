@@ -19,31 +19,31 @@ export const DayIcon = styled.div`
     font-size: 1.1rem;
   }
 
-  .mon {
+  .red {
     background: var(--red);
   }
 
-  .tue {
+  .orange {
     background: var(--orange);
   }
 
-  .wed {
+  .yellow {
     background: var(--yellow);
   }
 
-  .thu {
+  .green {
     background: var(--green);
   }
 
-  .fri {
+  .skyblue {
     background: var(--sky-blue);
   }
 
-  .sat {
+  .blue {
     background: var(--blue);
   }
 
-  .sun {
+  .purple {
     background: var(--purple);
   }
 `
