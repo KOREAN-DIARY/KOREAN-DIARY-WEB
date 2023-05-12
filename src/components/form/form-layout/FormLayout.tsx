@@ -5,6 +5,7 @@ import Grammar from 'components/form/grammar/Grammar'
 import Listening from 'components/form/listening/Listening'
 import Speaking from 'components/form/speaking/Speaking'
 import DayIcon from 'components/common/day-icon/DayIcon'
+import CloseModal from 'components/form/close-modal/CloseModal'
 
 const activeStep = 2
 
@@ -42,7 +43,7 @@ const renderStepComponent = (activeStep: number): React.ReactNode => {
 
 const FormLayout = () => {
   return (
-    <S.container>
+    <S.Container>
       <S.HStack>
         <S.CloseButton>
           <S.Icon className="material-icons">close</S.Icon>
@@ -62,7 +63,8 @@ const FormLayout = () => {
           <S.Icon className="material-icons">arrow_forward</S.Icon>
         </S.NextButton>
       </S.HStack>
-    </S.container>
+      {/* <CloseModal/> */}
+    </S.Container>
   )
 }
 
