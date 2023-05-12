@@ -1,7 +1,7 @@
 const pitch = 1
 const rate = 1
 
-async function populateVoiceList(synth: SpeechSynthesis) {
+const populateVoiceList = async (synth: SpeechSynthesis) => {
   try {
     const voices = await synth.getVoices().sort(function (a, b) {
       const aname = a.name.toUpperCase()
@@ -17,37 +17,36 @@ async function populateVoiceList(synth: SpeechSynthesis) {
   }
 }
 
-export async function speak(textToRead: string, synth: SpeechSynthesis) {
+export const speak = async (textToRead: string, synth: SpeechSynthesis) => {
   if (speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = () => populateVoiceList
   }
 
   if (synth.speaking) {
-    console.error('speechSynthesis.speaking')
     return
   }
 
   if (textToRead !== '') {
     const utterThis = new SpeechSynthesisUtterance(textToRead)
     utterThis.onend = function (event) {}
-    utterThis.onerror = function (event) {
-      console.error('SpeechSynthesisUtterance.onerror')
-    }
-    // utterThis.voice = voices[0]
+    utterThis.onerror = function (event) {}
+
     utterThis.pitch = pitch
     utterThis.rate = rate
 
+    synth.cancel()
     synth.speak(utterThis)
-    console.log(synth.speaking)
   }
 }
 
-export async function pause(synth: SpeechSynthesis) {
+export const pause = async (synth: SpeechSynthesis) => {
   synth.pause()
-  console.log(synth.speaking)
 }
 
-export async function resume(synth: SpeechSynthesis) {
+export const resume = async (synth: SpeechSynthesis) => {
   synth.resume()
-  console.log(synth.speaking)
+}
+
+export const stop = async (synth: SpeechSynthesis) => {
+  synth.cancel()
 }

@@ -7,8 +7,10 @@ export const ListeningWrapper = styled.article`
   align-content: center;
   color: var(--dark-grey);
   text-align: justify;
-  font-weight: 600;
+  font-weight: 500;
   width: 100%;
+  font-size: 1rem;
+  line-height: 1.2rem;
   margin-top: 1rem;
 `
 

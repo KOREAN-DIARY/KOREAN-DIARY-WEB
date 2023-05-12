@@ -7,30 +7,28 @@ interface AudioPlayerProps {
 }
 
 const AudioPlayer = ({ text }: AudioPlayerProps) => {
-  const [playState, setPlayState] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(false)
   const playAudio = (text: string) => {
     speak(text, window.speechSynthesis)
   }
 
   const handleAudio = () => {
-    setPlayState((prev) => !prev)
-    if (!playState) {
+    if (isPlaying) {
       pause(window.speechSynthesis)
     } else {
       window.speechSynthesis.speaking
         ? resume(window.speechSynthesis)
         : playAudio(text)
     }
+    setIsPlaying((prev) => !prev)
   }
 
   return (
-    <div>
-      <button onClick={handleAudio}>
-        <S.Icon className="material-icons">
-          {playState ? 'play_arrow' : 'pause'}
-        </S.Icon>
-      </button>
-    </div>
+    <button onClick={handleAudio}>
+      <S.Icon className="material-icons">
+        {isPlaying ? 'pause' : 'play_arrow'}
+      </S.Icon>
+    </button>
   )
 }
 
