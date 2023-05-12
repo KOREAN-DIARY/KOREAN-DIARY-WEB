@@ -35,6 +35,15 @@ export async function speak(textToRead: string, synth: SpeechSynthesis) {
     // utterThis.voice = voices[0]
     utterThis.pitch = pitch
     utterThis.rate = rate
+
     synth.speak(utterThis)
   }
 }
+
+// export async function pause(synth: SpeechSynthesis) {
+//   synth.pause()
+// }
+
+// export async function resume(synth: SpeechSynthesis) {
+//   synth.resume()
+// }
