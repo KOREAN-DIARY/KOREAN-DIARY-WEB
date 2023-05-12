@@ -4,7 +4,7 @@ import Writing from 'components/form/writing/Writing'
 import Grammar from 'components/form/grammar/Grammar'
 import Listening from 'components/form/listening/Listening'
 import Speaking from 'components/form/speaking/Speaking'
-import DayIcon from 'components/common/day-icon1/dayIcon'
+import DayIcon from 'components/common/day-icon/DayIcon'
 
 const activeStep = 2
 
