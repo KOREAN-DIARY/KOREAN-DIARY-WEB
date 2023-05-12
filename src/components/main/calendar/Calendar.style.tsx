@@ -4,4 +4,6 @@ export const CalendarWrapper = styled.div`
   .highlight {
     background: red;
   }
+  .red {
+  }
 `

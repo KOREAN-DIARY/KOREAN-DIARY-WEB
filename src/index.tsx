@@ -7,6 +7,7 @@ import Form from 'pages/Form'
 import Login from 'pages/Login'
 import Main from 'pages/Main'
 import MyPage from 'pages/MyPage'
+import 'styles/global.css'
 
 const router = createBrowserRouter([
   {
