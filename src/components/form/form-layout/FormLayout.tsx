@@ -4,6 +4,7 @@ import Writing from 'components/form/writing/Writing'
 import Grammar from 'components/form/grammar/Grammar'
 import Listening from 'components/form/listening/Listening'
 import Speaking from 'components/form/speaking/Speaking'
+import DayIcon from 'components/common/day-icon/DayIcon'
 
 const activeStep = 2
 
@@ -43,10 +44,24 @@ const FormLayout = () => {
   return (
     <S.container>
       <S.HStack>
-        <S.CloseIcon className="material-icons">close</S.CloseIcon>
+        <S.CloseButton>
+          <S.Icon className="material-icons">close</S.Icon>
+        </S.CloseButton>
       </S.HStack>
       <Stepper steps={steps} activeStep={activeStep} />
+      <S.DateContainer>
+        <DayIcon day={0} />
+        <S.DayText>
+          <S.Year>2023년</S.Year>
+          <S.Date>5월 12일</S.Date>
+        </S.DayText>
+      </S.DateContainer>
       {renderStepComponent(activeStep)}
+      <S.HStack>
+        <S.NextButton>
+          <S.Icon className="material-icons">arrow_forward</S.Icon>
+        </S.NextButton>
+      </S.HStack>
     </S.container>
   )
 }

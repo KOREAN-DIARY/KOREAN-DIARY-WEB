@@ -1,5 +1,4 @@
-import React from 'react'
-import * as S from './dayIcon.style'
+import * as S from './DayIcon.style'
 
 type DayIconProps = {
   day: number
@@ -29,14 +28,8 @@ const renderDayColor = (day: number): string => {
   }
 }
 
-const DayIcon = ({ day }: DayIconProps) => {
-  return (
-    <S.DayIcon>
-      <div className={renderDayColor(day)}>
-        <p>{dayTextList[day]}</p>
-      </div>
-    </S.DayIcon>
-  )
-}
+const DayIcon = ({ day }: DayIconProps) => (
+  <S.DayIcon color={renderDayColor(day)}>{dayTextList[day]}</S.DayIcon>
+)
 
 export default DayIcon
