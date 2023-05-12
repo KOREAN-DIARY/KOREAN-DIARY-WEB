@@ -26,6 +26,7 @@ export async function speak(textToRead: string, synth: SpeechSynthesis) {
     console.error('speechSynthesis.speaking')
     return
   }
+
   if (textToRead !== '') {
     const utterThis = new SpeechSynthesisUtterance(textToRead)
     utterThis.onend = function (event) {}
@@ -35,6 +36,18 @@ export async function speak(textToRead: string, synth: SpeechSynthesis) {
     // utterThis.voice = voices[0]
     utterThis.pitch = pitch
     utterThis.rate = rate
+
     synth.speak(utterThis)
+    console.log(synth.speaking)
   }
+}
+
+export async function pause(synth: SpeechSynthesis) {
+  synth.pause()
+  console.log(synth.speaking)
+}
+
+export async function resume(synth: SpeechSynthesis) {
+  synth.resume()
+  console.log(synth.speaking)
 }
