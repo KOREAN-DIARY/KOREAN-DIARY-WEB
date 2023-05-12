@@ -12,6 +12,7 @@ export const DayText = styled.div`
   flex: 1;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
   font-weight: bold;
   gap: 0.25rem;
 `

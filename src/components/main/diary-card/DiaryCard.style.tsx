@@ -2,32 +2,19 @@ import styled from '@emotion/styled'
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   text-align: center;
   background-color: var(--light-grey);
   border-radius: 1.5rem;
   width: 100%;
-  height: 12.8125rem;
+  height: 12.5rem;
   padding: 1rem;
-`
-
-export const DateContainer = styled.div`
-  width: calc(100% - 1rem);
-  display: flex;
-  margin-bottom: 1.5rem;
-  align-items: center;
-`
-export const DateText = styled.p`
-  color: var(--dark-grey);
-  margin-left: 1rem;
-  font-size: 1rem;
 `
 
 export const DiaryText = styled.p`
   color: var(--dark-grey);
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   line-height: 1rem;
   text-align: justify;
   overflow: hidden;
