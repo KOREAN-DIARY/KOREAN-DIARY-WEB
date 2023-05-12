@@ -37,17 +37,19 @@ export async function speak(textToRead: string, synth: SpeechSynthesis) {
     utterThis.pitch = pitch
     utterThis.rate = rate
 
+    synth.cancel()
     synth.speak(utterThis)
-    console.log(synth.speaking)
   }
 }
 
 export async function pause(synth: SpeechSynthesis) {
   synth.pause()
-  console.log(synth.speaking)
 }
 
 export async function resume(synth: SpeechSynthesis) {
   synth.resume()
-  console.log(synth.speaking)
+}
+
+export async function stop(synth: SpeechSynthesis) {
+  synth.cancel()
 }
