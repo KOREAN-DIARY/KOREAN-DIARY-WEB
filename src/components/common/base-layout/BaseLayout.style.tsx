@@ -6,3 +6,8 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
 `
+
+export const Content = styled.section`
+  padding: 1rem;
+  height: calc(100vh - 3.375rem);
+`
