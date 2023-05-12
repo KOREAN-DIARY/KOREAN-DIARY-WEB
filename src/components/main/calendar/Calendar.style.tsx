@@ -7,14 +7,42 @@ export const CalendarWrapper = styled.div`
       position: absolute;
       content: ' ';
       display: block;
-      width: 2.25rem;
-      padding-bottom: 2.25rem;
-      background-color: var(--red);
-      top: 0;
+      width: 2rem;
+      padding-bottom: 2rem;
+      /* background-color: var(--red); */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       border-radius: 100%;
       z-index: -1;
     }
   }
+  .red {
+    &::after {
+      background-color: var(--red);
+    }
+  }
+  .orange {
+    &::after {
+      background-color: var(--orange);
+    }
+  }
+  .yellow {
+    &::after {
+      background-color: var(--yellow);
+    }
+  }
+  .green {
+    &::after {
+      background-color: var(--green);
+    }
+  }
+  .sky-blue {
+    &::after {
+      background-color: var(--sky-blue);
+    }
+  }
+
   abbr {
     text-decoration: none;
   }
@@ -95,7 +123,7 @@ export const CalendarWrapper = styled.div`
   }
   .react-calendar__tile {
     max-width: 100%;
-    padding: 10px 6.6667px;
+    padding: 10px;
     text-align: center;
     line-height: 16px;
   }

@@ -1,21 +1,20 @@
 import * as S from './DiaryCard.style'
-import DayIcon from 'components/common/day-icon/DayIcon'
-import format from 'date-fns/format'
 import DiaryButton from '../diary-button/DiaryButton'
+import DayGroup from 'components/common/day-group/DayGroup'
 
 interface DiaryCardProps {
-  date: Date
-  diary: String
+  diary: {
+    content: string
+    createDt: string
+  }
 }
 
-const DiaryCard = ({ date, diary }: DiaryCardProps) => {
+const DiaryCard = ({ diary }: DiaryCardProps) => {
+  const { createDt, content } = diary
   return (
     <S.Container>
-      <S.DateContainer>
-        <DayIcon day={date.getDay()} />
-        <S.DateText>{format(date, 'M월 d일')}</S.DateText>
-      </S.DateContainer>
-      {diary === '' ? <DiaryButton /> : <S.DiaryText>{diary}</S.DiaryText>}
+      <DayGroup date={createDt} />
+      {content === '' ? <DiaryButton /> : <S.DiaryText>{content}</S.DiaryText>}
     </S.Container>
   )
 }
