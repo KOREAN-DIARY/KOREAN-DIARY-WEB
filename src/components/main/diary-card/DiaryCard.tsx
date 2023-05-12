@@ -1,6 +1,5 @@
-import React from 'react'
 import * as S from './DiaryCard.style'
-import DayIcon from 'components/common/day-icon/dayIcon'
+import DayIcon from 'components/common/day-icon/DayIcon'
 import format from 'date-fns/format'
 import DiaryButton from '../diary-button/DiaryButton'
 

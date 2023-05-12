@@ -7,12 +7,12 @@ interface TextareaProps {
 
 const Textarea = ({ value, onChange }: TextareaProps) => {
   return (
-    <S.Container
+    <S.Textarea
       placeholder="일기를 입력해주세요."
       value={value}
       onChange={(e) => onChange(e.target.value)}
       cols={50}
-    ></S.Container>
+    ></S.Textarea>
   )
 }
 

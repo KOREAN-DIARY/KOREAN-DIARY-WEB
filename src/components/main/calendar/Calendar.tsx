@@ -1,11 +1,10 @@
 import Calendar from 'react-calendar'
-import 'react-calendar/dist/Calendar.css'
 import * as S from './Calendar.style'
+import isEqual from 'date-fns/isEqual'
 
 const markDate = (date: Date) => {
-  // TODO: selected date array
-  const markedDate = new Date('2023-03-08')
-  if (markedDate.getDate() === date.getDate()) {
+  const markedDate = new Date('2023-05-02T00:00:00')
+  if (isEqual(markedDate, date)) {
     return 'highlight'
   }
 }
@@ -13,7 +12,10 @@ const markDate = (date: Date) => {
 const DiaryCalendar = () => {
   return (
     <S.CalendarWrapper>
-      <Calendar tileClassName={({ date }) => markDate(date) || 's'} />
+      <Calendar
+        goToRangeStartOnSelect={false}
+        tileClassName={({ date }) => markDate(date) || ''}
+      />
     </S.CalendarWrapper>
   )
 }

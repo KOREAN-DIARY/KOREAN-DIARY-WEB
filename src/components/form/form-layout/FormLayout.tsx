@@ -7,7 +7,7 @@ import Speaking from 'components/form/speaking/Speaking'
 import DayIcon from 'components/common/day-icon/DayIcon'
 import CloseModal from 'components/form/close-modal/CloseModal'
 
-const activeStep = 2
+const activeStep = 1
 
 const steps = [
   {
