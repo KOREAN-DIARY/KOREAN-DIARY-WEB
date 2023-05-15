@@ -2,7 +2,6 @@ import Calendar from 'react-calendar'
 import * as S from './Calendar.style'
 import format from 'date-fns/format'
 import { getScoreColor } from 'utils/get-score-color'
-import { exit } from 'process'
 
 interface DiaryType {
   createDt: string
@@ -32,6 +31,9 @@ const DiaryCalendar = () => {
   return (
     <S.CalendarWrapper>
       <Calendar
+        calendarType="Hebrew"
+        formatDay={(locale, date) => format(date, 'd')}
+        locale="ko"
         goToRangeStartOnSelect={false}
         tileClassName={({ date }) =>
           markDate(date, diaryList)
