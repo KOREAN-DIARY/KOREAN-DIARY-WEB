@@ -13,7 +13,6 @@ const markDate = (date: Date, markedDateList: DiaryType[]) => {
   const dateList = markedDateList.map(({ createDt }) => createDt)
   const diaryIndex = dateList.findIndex((d) => d == formattedDate)
   if (diaryIndex > -1) {
-    console.log(getScoreColor(markedDateList[diaryIndex].score))
     return getScoreColor(markedDateList[diaryIndex].score)
   }
 }

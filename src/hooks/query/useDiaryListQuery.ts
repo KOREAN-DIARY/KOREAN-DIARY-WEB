@@ -2,13 +2,14 @@ import { useQuery } from 'react-query'
 import apiClient from 'api/index'
 
 export type DiaryType = {
-  id: string
-  name: string
-  companyName: string
-  logoImageUrl: string
+  id: number
+  content: string
+  date: string
+  writing: number
+  speaking: number
 }
 
-const fetchBrandList = async (): Promise<DiaryType[]> => {
+const fetchDiaryList = async (): Promise<DiaryType[]> => {
   try {
     const { data } = await apiClient.get('/diary')
     return data
@@ -18,15 +19,15 @@ const fetchBrandList = async (): Promise<DiaryType[]> => {
 }
 
 const onError = () => {
-  console.log('brand error')
+  console.log('get diary list error')
 }
 
-export const useBrandsQuery = ({
+export const useDiaryListQuery = ({
   onSuccess = () => {},
 }: {
-  onSuccess?: (brands: DiaryType[]) => void
+  onSuccess?: (diaryList: DiaryType[]) => void
 }) => {
-  return useQuery('brands', fetchBrandList, {
+  return useQuery('diaryList', fetchDiaryList, {
     onError,
     onSuccess,
   })

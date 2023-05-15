@@ -15,12 +15,11 @@ export enum HttpStatusCode {
 }
 
 const apiClient = axios.create({
-  baseURL: `http://localhost:8080`,
+  baseURL: `/`,
   headers: { Accept: 'application/json' },
-  withCredentials: true,
 })
 export const voiceClient = axios.create({
-  baseURL: `http://localhost:8080`,
+  baseURL: `/`,
   headers: { 'Content-Type': 'multipart/form-data' },
   withCredentials: true,
 })
