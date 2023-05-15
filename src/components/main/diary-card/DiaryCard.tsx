@@ -2,18 +2,24 @@ import * as S from './DiaryCard.style'
 import DiaryButton from '../diary-button/DiaryButton'
 import DayGroup from 'components/common/day-group/DayGroup'
 import { DiaryType } from 'hooks/query/useDiaryListQuery'
+import { format } from 'date-fns'
 
 interface DiaryCardProps {
-  diary: DiaryType
+  selectedDate: Date
+  diary?: DiaryType
 }
 
-const DiaryCard = ({ diary }: DiaryCardProps) => {
-  const { date, content } = diary
+const DiaryCard = ({ diary, selectedDate }: DiaryCardProps) => {
+  const isDiaryExist = !!diary
 
   return (
     <S.Container>
-      <DayGroup date={date} />
-      {content === '' ? <DiaryButton /> : <S.DiaryText>{content}</S.DiaryText>}
+      <DayGroup date={format(selectedDate, 'yyyy-MM-dd')} />
+      {!isDiaryExist ? (
+        <DiaryButton />
+      ) : (
+        <S.DiaryText>{diary.content}</S.DiaryText>
+      )}
     </S.Container>
   )
 }
