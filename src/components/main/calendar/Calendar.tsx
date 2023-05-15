@@ -6,7 +6,7 @@ import { DiaryType } from 'hooks/query/useDiaryListQuery'
 
 interface DiaryCalendarProps {
   diaryList: DiaryType[]
-  selectedDate?: Date
+  selectedDate: Date
 }
 
 const markDate = (date: Date, markedDateList: DiaryType[]) => {
@@ -30,9 +30,7 @@ const DiaryCalendar = ({
         calendarType="Hebrew"
         formatDay={(locale, date) => format(date, 'd')}
         locale="ko"
-        onClickDay={(date: Date) => {
-          console.log(date, selectedDate)
-        }}
+        onClickDay={(date: Date) => {}}
         goToRangeStartOnSelect={false}
         tileClassName={({ date }) =>
           markDate(date, diaryList)
