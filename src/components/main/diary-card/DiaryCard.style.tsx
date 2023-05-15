@@ -14,10 +14,11 @@ export const Container = styled.div`
 `
 
 export const DiaryText = styled.p`
+  width: 100%;
+  text-align: left;
   color: var(--dark-grey);
   font-size: 0.875rem;
   line-height: 1rem;
-  text-align: justify;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: calc(100% - 1rem);

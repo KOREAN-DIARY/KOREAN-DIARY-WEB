@@ -2,36 +2,30 @@ import Calendar from 'react-calendar'
 import * as S from './Calendar.style'
 import format from 'date-fns/format'
 import { getScoreColor } from 'utils/get-score-color'
-import { exit } from 'process'
+import { DiaryType } from 'hooks/query/useDiaryListQuery'
 
-interface DiaryType {
-  createDt: string
-  score: number
+interface DiaryCalendarProps {
+  diaryList: DiaryType[]
 }
 
 const markDate = (date: Date, markedDateList: DiaryType[]) => {
   const formattedDate = format(date, 'yyyy-MM-dd')
-  const dateList = markedDateList.map(({ createDt }) => createDt)
+  const dateList = markedDateList.map(({ date }) => date)
   const diaryIndex = dateList.findIndex((d) => d == formattedDate)
   if (diaryIndex > -1) {
-    console.log(getScoreColor(markedDateList[diaryIndex].score))
-    return getScoreColor(markedDateList[diaryIndex].score)
+    const { speaking, writing } = markedDateList[diaryIndex]
+    const score = (speaking + writing) / 2
+    return getScoreColor(score)
   }
 }
 
-const diaryList: DiaryType[] = [
-  { createDt: '2023-05-02', score: 10 },
-  { createDt: '2023-05-05', score: 25 },
-  { createDt: '2023-05-07', score: 40 },
-  { createDt: '2023-05-08', score: 60 },
-  { createDt: '2023-05-10', score: 80 },
-  { createDt: '2023-05-12', score: 93 },
-]
-
-const DiaryCalendar = () => {
+const DiaryCalendar = ({ diaryList }: DiaryCalendarProps) => {
   return (
     <S.CalendarWrapper>
       <Calendar
+        calendarType="Hebrew"
+        formatDay={(locale, date) => format(date, 'd')}
+        locale="ko"
         goToRangeStartOnSelect={false}
         tileClassName={({ date }) =>
           markDate(date, diaryList)

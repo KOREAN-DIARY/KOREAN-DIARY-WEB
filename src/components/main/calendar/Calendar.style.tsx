@@ -9,7 +9,6 @@ export const CalendarWrapper = styled.div`
       display: block;
       width: 2rem;
       padding-bottom: 2rem;
-      /* background-color: var(--red); */
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -146,7 +145,18 @@ export const CalendarWrapper = styled.div`
   }
   .react-calendar__tile--active {
     font-weight: bold;
-    text-decoration: underline;
+    position: relative;
+    &::before {
+      position: absolute;
+      content: ' ';
+      border-bottom: 2px solid;
+      display: block;
+      width: 1rem;
+      padding-bottom: 1.25rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
   .react-calendar__tile--active:enabled:hover,
   .react-calendar__tile--active:enabled:focus {
