@@ -4,6 +4,13 @@ import camelcaseKeys from 'camelcase-keys'
 // import snakecaseKeys from 'snakecase-keys'
 import queryString from 'query-string'
 
+export interface ResponseType<T> {
+  code: number
+  message: string
+  http_status: number
+  data: T
+}
+
 export enum HttpStatusCode {
   OK = 200,
   Created = 201,
