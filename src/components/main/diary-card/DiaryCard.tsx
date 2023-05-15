@@ -9,7 +9,7 @@ interface DiaryCardProps {
 
 const DiaryCard = ({ diary }: DiaryCardProps) => {
   const { date, content } = diary
-  console.log(diary)
+
   return (
     <S.Container>
       <DayGroup date={date} />

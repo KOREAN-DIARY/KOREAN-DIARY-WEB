@@ -10,7 +10,7 @@ interface MainLayoutProps {
 const MainLayout = ({ diaryList }: MainLayoutProps) => {
   return (
     <S.Container>
-      <Calendar />
+      <Calendar diaryList={diaryList} />
       <DiaryCard diary={diaryList[0]} />
     </S.Container>
   )
