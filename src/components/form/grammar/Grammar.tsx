@@ -1,5 +1,5 @@
 import ResultGroup from '../result-group/ResultGroup'
-import * as S from './Grammer.style'
+import * as S from './Grammar.style'
 
 interface GrammerProps {
   diary: string

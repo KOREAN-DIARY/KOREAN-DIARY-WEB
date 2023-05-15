@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import * as S from './ResultGroup.style'
-import GrammerResult from '../grammer-result/GrammerResult'
+import GrammerResult from '../grammar-result/GrammarResult'
 
 interface ResultGroupProps {
   text: string
