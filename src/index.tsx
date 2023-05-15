@@ -8,6 +8,7 @@ import Login from 'pages/Login'
 import Main from 'pages/Main'
 import MyPage from 'pages/MyPage'
 import 'styles/global.css'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 const router = createBrowserRouter([
   {
@@ -32,10 +33,20 @@ const router = createBrowserRouter([
   },
 ])
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+})
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <App />
+    </QueryClientProvider>
   </React.StrictMode>
 )
