@@ -19,7 +19,7 @@ const renderDayColor = (day: number): string => {
     case 4:
       return 'green'
     case 5:
-      return 'skyblue'
+      return 'sky-blue'
     case 6:
       return 'blue'
 

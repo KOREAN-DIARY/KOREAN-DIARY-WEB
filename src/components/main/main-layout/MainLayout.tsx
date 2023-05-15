@@ -5,13 +5,21 @@ import { DiaryType } from 'hooks/query/useDiaryListQuery'
 
 interface MainLayoutProps {
   diaryList: DiaryType[]
+  todayDiary?: DiaryType
+  selectedDate: Date
+  onSelectDate: (date: Date) => void
 }
 
-const MainLayout = ({ diaryList }: MainLayoutProps) => {
+const MainLayout = ({
+  diaryList,
+  todayDiary,
+  selectedDate,
+  onSelectDate,
+}: MainLayoutProps) => {
   return (
     <S.Container>
-      <Calendar diaryList={diaryList} />
-      <DiaryCard diary={diaryList[0]} />
+      <Calendar diaryList={diaryList} onSelectDate={onSelectDate} />
+      <DiaryCard diary={todayDiary} selectedDate={selectedDate} />
     </S.Container>
   )
 }
