@@ -3,13 +3,13 @@ import MainLayout from 'components/main/main-layout/MainLayout'
 import { useDiaryListQuery } from 'hooks/query/useDiaryListQuery'
 
 const Main = () => {
-  const { data } = useDiaryListQuery({})
+  const { data, isSuccess } = useDiaryListQuery({
+    onSuccess: () => {
+      return data
+    },
+  })
 
-  return (
-    <BaseLayout>
-      <MainLayout />
-    </BaseLayout>
-  )
+  return <BaseLayout>{isSuccess && <MainLayout diaryList={data} />}</BaseLayout>
 }
 
 export default Main

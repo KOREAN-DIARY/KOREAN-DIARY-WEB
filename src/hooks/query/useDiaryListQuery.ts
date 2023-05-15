@@ -1,6 +1,13 @@
 import { useQuery } from 'react-query'
 import apiClient from 'api/index'
 
+export interface ResponseType<T> {
+  code: number
+  message: string
+  http_status: number
+  data: T
+}
+
 export type DiaryType = {
   id: number
   content: string
@@ -9,10 +16,10 @@ export type DiaryType = {
   speaking: number
 }
 
-const fetchDiaryList = async (): Promise<DiaryType[]> => {
+const fetchDiaryList = async (): Promise<ResponseType<DiaryType[]>> => {
   try {
     const { data } = await apiClient.get('/diary')
-    return data
+    return data.data
   } catch (error) {
     return Promise.reject()
   }
