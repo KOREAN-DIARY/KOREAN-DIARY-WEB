@@ -1,12 +1,6 @@
 import { useQuery } from 'react-query'
 import apiClient from 'api/index'
-
-export interface ResponseType<T> {
-  code: number
-  message: string
-  http_status: number
-  data: T
-}
+import { ResponseType } from 'api/index'
 
 export type DiaryType = {
   id: number
