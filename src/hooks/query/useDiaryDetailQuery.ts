@@ -1,8 +1,9 @@
 import { useQuery } from 'react-query'
 import apiClient, { ResponseType } from 'api/index'
 import { DiaryType } from './useDiaryListQuery'
+import format from 'date-fns/format'
 
-const fetchDiaryDetail = async (date: Date): Promise<DiaryType> => {
+const fetchDiaryDetail = async (date: String): Promise<DiaryType> => {
   try {
     const { data } = await apiClient.get('/diary/search', { params: { date } })
     return data.data
@@ -12,7 +13,12 @@ const fetchDiaryDetail = async (date: Date): Promise<DiaryType> => {
 }
 
 export const useDiaryDetailQuery = (date: Date) => {
-  return useQuery(['diaryDetail'], () => fetchDiaryDetail(date), {
-    enabled: !!date,
-  })
+  const formattedDate = format(date, 'yyyy-MM-dd')
+  return useQuery(
+    ['diaryDetail', date],
+    () => fetchDiaryDetail(formattedDate),
+    {
+      enabled: !!date,
+    }
+  )
 }

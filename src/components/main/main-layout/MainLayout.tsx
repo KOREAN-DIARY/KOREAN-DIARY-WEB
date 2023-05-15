@@ -2,18 +2,23 @@ import Calendar from 'components/main/calendar/Calendar'
 import * as S from './MainLayout.style'
 import DiaryCard from '../diary-card/DiaryCard'
 import { DiaryType } from 'hooks/query/useDiaryListQuery'
-import { useState } from 'react'
 
 interface MainLayoutProps {
   diaryList: DiaryType[]
   todayDiary?: DiaryType
+  selectedDate: Date
+  onSelectDate: (date: Date) => void
 }
 
-const MainLayout = ({ diaryList, todayDiary }: MainLayoutProps) => {
-  const [selectedDate, setSelectedDate] = useState(new Date())
+const MainLayout = ({
+  diaryList,
+  todayDiary,
+  selectedDate,
+  onSelectDate,
+}: MainLayoutProps) => {
   return (
     <S.Container>
-      <Calendar diaryList={diaryList} selectedDate={selectedDate} />
+      <Calendar diaryList={diaryList} onSelectDate={onSelectDate} />
       <DiaryCard diary={todayDiary} selectedDate={selectedDate} />
     </S.Container>
   )
