@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import * as S from './ResultGroup.style'
-import GrammerResult from '../grammar-result/GrammarResult'
+import GrammarResult from '../grammar-result/GrammarResult'
 
 interface ResultGroupProps {
   text: string
@@ -26,9 +26,9 @@ const ResultGroup = ({ text }: ResultGroupProps) => {
       {toggled && (
         <S.Results>
           <S.RightText>심혈을 기울여 개발한 맞춤법 검사기.</S.RightText>
-          <GrammerResult />
-          <GrammerResult />
-          <GrammerResult />
+          <GrammarResult />
+          <GrammarResult />
+          <GrammarResult />
         </S.Results>
       )}
     </S.Container>

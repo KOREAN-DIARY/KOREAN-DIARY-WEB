@@ -1,7 +1,7 @@
 import React from 'react'
 import * as S from './GrammarResult.style'
 
-const GrammerResult = () => {
+const GrammarResult = () => {
   return (
     <S.ResultWrapper>
       <p>
@@ -18,4 +18,4 @@ const GrammerResult = () => {
   )
 }
 
-export default GrammerResult
+export default GrammarResult

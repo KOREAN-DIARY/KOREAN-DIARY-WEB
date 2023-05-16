@@ -1,14 +1,14 @@
 import ResultGroup from '../result-group/ResultGroup'
 import * as S from './Grammar.style'
 
-interface GrammerProps {
+interface GrammarProps {
   diary: string
   result: object
 }
 
 const Grammar = () => {
   return (
-    <S.GrammerWrapper>
+    <S.GrammarWrapper>
       <S.Diary>
         오늘의 일기입니다. <S.Wrong>심여를 기울여 만든 마춤뻡 검사기.</S.Wrong>{' '}
         만들었는데 과연 제대로 될 지는 모르겠다. 아 너무 졸리다. 진짜 졸리다.
@@ -26,7 +26,7 @@ const Grammar = () => {
           <ResultGroup text="2. 맛춤법 쫌 실수하지 말아봐." />
         </S.ResultGroups>
       </S.ResultContainer>
-    </S.GrammerWrapper>
+    </S.GrammarWrapper>
   )
 }
 

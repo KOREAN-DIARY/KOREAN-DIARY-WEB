@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const GrammerWrapper = styled.article`
+export const GrammarWrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
