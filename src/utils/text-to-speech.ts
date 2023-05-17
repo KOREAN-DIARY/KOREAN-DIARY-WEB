@@ -1,5 +1,4 @@
 const pitch = 1
-const rate = 1
 
 const populateVoiceList = async (synth: SpeechSynthesis) => {
   try {
@@ -30,9 +29,8 @@ export const speak = async (textToRead: string, synth: SpeechSynthesis) => {
     const utterThis = new SpeechSynthesisUtterance(textToRead)
     utterThis.onend = function (event) {}
     utterThis.onerror = function (event) {}
-
+    utterThis.rate = 0.1
     utterThis.pitch = pitch
-    utterThis.rate = rate
 
     synth.cancel()
     synth.speak(utterThis)
