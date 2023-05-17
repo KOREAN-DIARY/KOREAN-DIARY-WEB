@@ -8,30 +8,8 @@ import Login from 'pages/Login'
 import Main from 'pages/Main'
 import MyPage from 'pages/MyPage'
 import 'styles/global.css'
+import CompletePage from 'pages/Complete'
 import { QueryClient, QueryClientProvider } from 'react-query'
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Main />,
-  },
-  {
-    path: '/form',
-    element: <Form />,
-  },
-  {
-    path: '/my',
-    element: <MyPage />,
-  },
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/diary/:id',
-    element: <Diary />,
-  },
-])
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,7 +23,6 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
       <App />
     </QueryClientProvider>
   </React.StrictMode>
