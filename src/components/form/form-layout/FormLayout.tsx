@@ -4,11 +4,9 @@ import Writing from 'components/form/writing/Writing'
 import Grammar from 'components/form/grammar/Grammar'
 import Listening from 'components/form/listening/Listening'
 import Speaking from 'components/form/speaking/Speaking'
-import DayIcon from 'components/common/day-icon/DayIcon'
-import CloseModal from 'components/form/close-modal/CloseModal'
 import DayGroup from 'components/common/day-group/DayGroup'
-
-const activeStep = 1
+import { useSearchParams } from 'react-router-dom'
+import queryString from 'query-string'
 
 const steps = [
   {
@@ -29,8 +27,8 @@ const steps = [
   },
 ]
 
-const renderStepComponent = (activeStep: number): React.ReactNode => {
-  switch (activeStep) {
+const renderStepComponent = (step: number): React.ReactNode => {
+  switch (step) {
     case 1:
       return <Writing />
     case 2:
@@ -43,6 +41,10 @@ const renderStepComponent = (activeStep: number): React.ReactNode => {
 }
 
 const FormLayout = () => {
+  const [searchParams] = useSearchParams()
+  const query = queryString.parse(searchParams.toString())
+  const step = query?.step ? Number(query.step) : 0
+
   return (
     <S.Container>
       <S.HStack>
@@ -50,9 +52,9 @@ const FormLayout = () => {
           <S.Icon className="material-icons">close</S.Icon>
         </S.CloseButton>
       </S.HStack>
-      <Stepper steps={steps} activeStep={activeStep} />
+      <Stepper steps={steps} activeStep={step} />
       <DayGroup date="2023-05-08" />
-      {renderStepComponent(activeStep)}
+      {renderStepComponent(step)}
       <S.HStack>
         <S.NextButton>
           <S.Icon className="material-icons">arrow_forward</S.Icon>
