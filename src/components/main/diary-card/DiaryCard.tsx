@@ -15,7 +15,7 @@ const DiaryCard = () => {
       <DayGroup date={format(date, 'yyyy-MM-dd')} />
       {!isDiaryExist ? (
         <S.DiaryButton onClick={() => navigate('/form?step=1')}>
-          일기 작성하기✏️
+          일기 작성하기 ✏️
         </S.DiaryButton>
       ) : (
         <S.DiaryText>{selectedDiary.content}</S.DiaryText>
