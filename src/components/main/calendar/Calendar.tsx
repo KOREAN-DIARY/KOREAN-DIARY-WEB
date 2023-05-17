@@ -3,10 +3,10 @@ import * as S from './Calendar.style'
 import format from 'date-fns/format'
 import { getScoreColor } from 'utils/get-score-color'
 import { DiaryType } from 'hooks/query/useDiaryListQuery'
+import { initialDiary, useDiaryContext } from 'hooks/context/useDiaryContext'
 
 interface DiaryCalendarProps {
   diaryList: DiaryType[]
-  onSelectDate: (date: Date) => void
 }
 
 const markDate = (date: Date, markedDateList: DiaryType[]) => {
@@ -20,14 +20,23 @@ const markDate = (date: Date, markedDateList: DiaryType[]) => {
   }
 }
 
-const DiaryCalendar = ({ diaryList, onSelectDate }: DiaryCalendarProps) => {
+const DiaryCalendar = ({ diaryList }: DiaryCalendarProps) => {
+  const { setSelectedDiary } = useDiaryContext()
+
+  const onClickDay = (date: Date) => {
+    const diary = diaryList.find(
+      (diary) => diary.date == format(date, 'yyyy-MM-dd')
+    )
+    diary ? setSelectedDiary(diary) : setSelectedDiary(initialDiary)
+  }
+
   return (
     <S.CalendarWrapper>
       <Calendar
         calendarType="Hebrew"
-        formatDay={(locale, date) => format(date, 'd')}
+        formatDay={(_, date) => format(date, 'd')}
         locale="ko"
-        onClickDay={(date: Date) => onSelectDate(date)}
+        onClickDay={onClickDay}
         goToRangeStartOnSelect={false}
         tileClassName={({ date }) =>
           markDate(date, diaryList)

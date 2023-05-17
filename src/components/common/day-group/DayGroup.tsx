@@ -8,7 +8,7 @@ const DayGroup = ({ date }: { date: string }) => {
       <S.DayText>
         <S.Year>{dateObj.getFullYear()}년</S.Year>
         <S.Date>
-          {dateObj.getMonth()}월 {dateObj.getDate()}일
+          {dateObj.getMonth() + 1}월 {dateObj.getDate()}일
         </S.Date>
       </S.DayText>
     </S.Container>
