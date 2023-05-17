@@ -9,5 +9,4 @@ export const Container = styled.div`
 export const Content = styled.section`
   display: flex;
   padding: 1rem;
-  height: calc(100vh - 3.375rem);
 `
