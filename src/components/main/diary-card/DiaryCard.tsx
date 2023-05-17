@@ -1,19 +1,16 @@
 import * as S from './DiaryCard.style'
 import DayGroup from 'components/common/day-group/DayGroup'
-import { DiaryType } from 'hooks/query/useDiaryListQuery'
 import { format } from 'date-fns'
+import { useDiaryContext } from 'hooks/context/useDiaryContext'
 
-interface DiaryCardProps {
-  selectedDate: Date
-  diary?: DiaryType
-}
-
-const DiaryCard = ({ diary, selectedDate }: DiaryCardProps) => {
-  const isDiaryExist = !!diary
+const DiaryCard = () => {
+  const { selectedDiary } = useDiaryContext()
+  const isDiaryExist = selectedDiary.content
+  const date = isDiaryExist ? new Date(selectedDiary.date) : new Date()
 
   return (
     <S.Container>
-      <DayGroup date={format(selectedDate, 'yyyy-MM-dd')} />
+      <DayGroup date={format(date, 'yyyy-MM-dd')} />
       {!isDiaryExist ? (
         <S.DiaryButton
           onClick={() => {
@@ -24,7 +21,7 @@ const DiaryCard = ({ diary, selectedDate }: DiaryCardProps) => {
           일기 작성하기✏️
         </S.DiaryButton>
       ) : (
-        <S.DiaryText>{diary.content}</S.DiaryText>
+        <S.DiaryText>{selectedDiary.content}</S.DiaryText>
       )}
     </S.Container>
   )
