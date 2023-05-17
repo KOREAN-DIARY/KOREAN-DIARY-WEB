@@ -5,7 +5,7 @@ import Grammar from 'components/form/grammar/Grammar'
 import Listening from 'components/form/listening/Listening'
 import Speaking from 'components/form/speaking/Speaking'
 import DayGroup from 'components/common/day-group/DayGroup'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import queryString from 'query-string'
 
 const steps = [
@@ -41,12 +41,17 @@ const renderStepComponent = (step: number): React.ReactNode => {
 }
 
 const FormLayout = () => {
+  const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   const query = queryString.parse(searchParams.toString())
   const step = query?.step ? Number(query.step) : 0
 
   const changeStep = () => {
-    setSearchParams({ step: (step + 1).toString() })
+    if (step == 4) {
+      navigate('/complete')
+    } else {
+      setSearchParams({ step: (step + 1).toString() })
+    }
   }
 
   return (
