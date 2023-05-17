@@ -3,7 +3,7 @@ import * as S from './Calendar.style'
 import format from 'date-fns/format'
 import { getScoreColor } from 'utils/get-score-color'
 import { DiaryType } from 'hooks/query/useDiaryListQuery'
-import { useDiaryContext } from 'hooks/context/useDiaryContext'
+import { initialDiary, useDiaryContext } from 'hooks/context/useDiaryContext'
 
 interface DiaryCalendarProps {
   diaryList: DiaryType[]
@@ -27,7 +27,7 @@ const DiaryCalendar = ({ diaryList }: DiaryCalendarProps) => {
     const diary = diaryList.find(
       (diary) => diary.date == format(date, 'yyyy-MM-dd')
     )
-    diary && setSelectedDiary(diary)
+    diary ? setSelectedDiary(diary) : setSelectedDiary(initialDiary)
   }
 
   return (

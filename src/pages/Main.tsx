@@ -1,9 +1,7 @@
 import BaseLayout from 'components/common/base-layout/BaseLayout'
 import MainLayout from 'components/main/main-layout/MainLayout'
 import DiaryProvider from 'hooks/context/useDiaryContext'
-import { useDiaryDetailQuery } from 'hooks/query/useDiaryDetailQuery'
 import { useDiaryListQuery } from 'hooks/query/useDiaryListQuery'
-import { useState } from 'react'
 
 const Main = () => {
   const { data, isSuccess } = useDiaryListQuery({
