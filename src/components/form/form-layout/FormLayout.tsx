@@ -41,9 +41,13 @@ const renderStepComponent = (step: number): React.ReactNode => {
 }
 
 const FormLayout = () => {
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   const query = queryString.parse(searchParams.toString())
   const step = query?.step ? Number(query.step) : 0
+
+  const changeStep = () => {
+    setSearchParams({ step: (step + 1).toString() })
+  }
 
   return (
     <S.Container>
@@ -56,7 +60,7 @@ const FormLayout = () => {
       <DayGroup date="2023-05-08" />
       {renderStepComponent(step)}
       <S.HStack>
-        <S.NextButton>
+        <S.NextButton onClick={changeStep}>
           <S.Icon className="material-icons">arrow_forward</S.Icon>
         </S.NextButton>
       </S.HStack>
