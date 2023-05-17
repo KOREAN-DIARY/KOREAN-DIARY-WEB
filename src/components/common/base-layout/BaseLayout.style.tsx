@@ -7,6 +7,7 @@ export const Container = styled.div`
 `
 
 export const Content = styled.section`
+  flex: 1;
   display: flex;
   padding: 1rem;
 `
