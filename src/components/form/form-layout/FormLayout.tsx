@@ -62,8 +62,10 @@ const FormLayout = () => {
         </S.CloseButton>
       </S.HStack>
       <Stepper steps={steps} activeStep={step} />
+
       <DayGroup date="2023-05-08" />
       {renderStepComponent(step)}
+
       <S.HStack>
         <S.NextButton onClick={changeStep}>
           <S.Icon className="material-icons">arrow_forward</S.Icon>
