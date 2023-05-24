@@ -3,18 +3,18 @@ import styled from '@emotion/styled'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
 `
 export const DayFrame = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 1rem;
 `
 export const Border = styled.div`
+  width: 100%;
   border-top: solid;
   border-bottom: solid;
-  border-width: 0.125rem;
-  margin-top: 0.9375rem;
+  border-width: 1px;
   border-color: var(--grey);
 `

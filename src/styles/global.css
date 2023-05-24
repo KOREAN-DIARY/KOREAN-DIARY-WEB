@@ -26,6 +26,17 @@ body > #root > .App > div {
 
 * {
   font-family: 'NanumGothic';
+  /* font-weight: bold; */
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+article,
+p {
+  font-family: 'NanumGothic';
   padding: 0;
   margin: 0;
   border: 0;

@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 
 export const ScoreTab = styled.div`
-  width: 262px;
-  height: 176px;
+  width: 100%;
+  margin: 1rem 0;
   flex-direction: column;
   display: flex;
   gap: 5px;
@@ -13,27 +13,30 @@ export const Title = styled.div<{ color: string }>`
   font-weight: bold;
   text-align: center;
   color: ${({ color }) => `var(--${color})`};
-  margin-top: 40px;
 `
 export const Average = styled.div<{ color: string }>`
   font-size: 18px;
   color: ${({ color }) => `var(--${color})`};
   text-align: center;
   font-weight: bold;
-  margin-top: 5px;
 `
 export const Score = styled.div`
   font-size: 18px;
   color: var(--dark-grey);
   font-weight: bold;
   text-align: center;
-  margin-top: 5px;
 ` //점
 export const Group = styled.div`
   display: flex;
-  flex-direction: row;
   text-align: center;
-  margin-top: 5px;
+`
+export const ScoreGroup = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
 `
 export const WritingScore = styled.div`
   font-size: 12px;
