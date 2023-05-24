@@ -18,7 +18,9 @@ const DiaryCard = () => {
           일기 작성하기 ✏️
         </S.DiaryButton>
       ) : (
-        <S.DiaryText>{selectedDiary.content}</S.DiaryText>
+        <S.DiaryText onClick={() => navigate(`/diary/${selectedDiary.date}`)}>
+          {selectedDiary.content}
+        </S.DiaryText>
       )}
     </S.Container>
   )
