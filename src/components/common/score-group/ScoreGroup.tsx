@@ -18,16 +18,18 @@ const ScoreGroup = ({ writing, speaking }: ScoreProps) => {
         <S.Average color={color}>{score}</S.Average>
         <S.Score>점</S.Score>
       </S.Group>
-      <S.Group>
-        <S.OutLine>쓰기:</S.OutLine>
-        <S.WritingScore>{writing}</S.WritingScore>
-        <S.OutLine>점</S.OutLine>
-      </S.Group>
-      <S.Group>
-        <S.OutLine>말하기:</S.OutLine>
-        <S.SpeakingScore>{speaking}</S.SpeakingScore>
-        <S.OutLine>점</S.OutLine>
-      </S.Group>
+      <S.ScoreGroup>
+        <S.Group>
+          <S.OutLine>쓰기:</S.OutLine>
+          <S.WritingScore>{writing}</S.WritingScore>
+          <S.OutLine>점</S.OutLine>
+        </S.Group>
+        <S.Group>
+          <S.OutLine>말하기:</S.OutLine>
+          <S.SpeakingScore>{speaking}</S.SpeakingScore>
+          <S.OutLine>점</S.OutLine>
+        </S.Group>
+      </S.ScoreGroup>
     </S.ScoreTab>
   )
 }
