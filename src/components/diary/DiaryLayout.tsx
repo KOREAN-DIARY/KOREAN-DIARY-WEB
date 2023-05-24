@@ -4,7 +4,6 @@ import ScoreGroup from 'components/common/score-group/ScoreGroup'
 import DayGroup from 'components/common/day-group/DayGroup'
 import GrammarResult from 'components/form/grammar-result/GrammarResult'
 import Grammar from 'components/form/grammar/Grammar'
-import { GrammarWrapper } from 'components/form/grammar/Grammar.style'
 
 const DiaryLayout = () => (
   <S.Container>
