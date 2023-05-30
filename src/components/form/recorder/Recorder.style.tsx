@@ -5,6 +5,7 @@ export const Container = styled.div`
   align-items: center;
   margin-left: 1rem;
   gap: 0.5rem;
+  width: 100%;
 `
 
 export const Button = styled.button`
@@ -12,4 +13,12 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+`
+
+export const Score = styled.div<{ color: string }>`
+  display: flex;
+  margin-left: auto;
+  & > span {
+    color: ${({ color }) => `var(--${color})`};
+  }
 `

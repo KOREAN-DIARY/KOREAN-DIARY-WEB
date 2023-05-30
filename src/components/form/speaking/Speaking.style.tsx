@@ -27,7 +27,7 @@ export const Sentence = styled.div`
   color: var(--dark-grey);
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 `
 
 export const SentenceGroup = styled.section`

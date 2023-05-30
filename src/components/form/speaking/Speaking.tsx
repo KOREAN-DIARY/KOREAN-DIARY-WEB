@@ -14,6 +14,7 @@ const getSentenceArray = (str: string) =>
 
 const Speaking = () => {
   const [recorder, setRecorder] = useState<RecordRTCPromisesHandler>()
+  const [scoreList, setScoreList] = useState<number[]>([])
   const { mutateAsync } = useSpeakingScoreMutation({
     onSuccess: () => {},
     onError: () => {},
@@ -25,19 +26,24 @@ const Speaking = () => {
     setRecorder(recorder)
   }
 
-  const stop = async (sentence: string) => {
+  const stop = async (
+    sentence: string
+  ): Promise<{ score: number; url: string }> => {
     await recorder?.stopRecording()
     const blob = await recorder?.getBlob()
     if (!blob) {
-      return
+      return { url: '', score: 0 }
     }
-    var file = new File([blob], 'audio.pcm')
-    invokeSaveAsDialog(blob, 'audio.webm')
+    const file = new File([blob], 'audio.pcm')
     const formData = new FormData()
     formData.append('script', sentence)
     formData.append('audio', file)
-    mutateAsync(formData)
-    return URL.createObjectURL(blob)
+    const result = await mutateAsync(formData)
+    recorder?.destroy()
+    return {
+      url: URL.createObjectURL(blob),
+      score: Math.ceil((result?.score || 0) * 20),
+    }
   }
 
   return (
