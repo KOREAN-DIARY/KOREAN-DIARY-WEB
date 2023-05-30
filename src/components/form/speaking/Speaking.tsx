@@ -25,27 +25,18 @@ const Speaking = () => {
     setRecorder(recorder)
   }
 
-  const blobToBase64 = (blob: Blob) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(blob)
-    return new Promise<String | ArrayBuffer>((resolve) => {
-      reader.onloadend = () => {
-        resolve(reader?.result || '')
-      }
-    })
-  }
-
   const stop = async (sentence: string) => {
     await recorder?.stopRecording()
     const blob = await recorder?.getBlob()
     if (!blob) {
       return
     }
-    invokeSaveAsDialog(blob, 'audio.wav')
-    const base64 = await blobToBase64(blob)
-    console.log(base64)
-
-    // mutateAsync()
+    var file = new File([blob], 'audio.pcm')
+    invokeSaveAsDialog(blob, 'audio.webm')
+    const formData = new FormData()
+    formData.append('script', sentence)
+    formData.append('audio', file)
+    mutateAsync(formData)
     return URL.createObjectURL(blob)
   }
 
