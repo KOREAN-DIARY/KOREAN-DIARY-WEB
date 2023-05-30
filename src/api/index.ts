@@ -26,7 +26,7 @@ const apiClient = axios.create({
   baseURL: `/`,
   headers: { Accept: 'application/json' },
 })
-export const voiceClient = axios.create({
+export const audioClient = axios.create({
   baseURL: `/`,
   headers: { 'Content-Type': 'multipart/form-data' },
   withCredentials: true,
@@ -42,6 +42,6 @@ apiClient.defaults.paramsSerializer = (params) => {
   return queryString.stringify(params)
 }
 
-voiceClient.interceptors.response.use(getCamelCaseResponse)
+audioClient.interceptors.response.use(getCamelCaseResponse)
 
 export default apiClient
