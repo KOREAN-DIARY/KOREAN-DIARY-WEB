@@ -9,7 +9,10 @@ type SpeakingResponse = {
 
 const sendAudio = async (body: FormData): Promise<SpeakingResponse> => {
   try {
-    const { data } = await audioClient.post('/speaking', body)
+    const { data } = await audioClient.post<ResponseType<SpeakingResponse>>(
+      '/speaking',
+      body
+    )
     return data.data
   } catch (error) {
     return Promise.reject()
