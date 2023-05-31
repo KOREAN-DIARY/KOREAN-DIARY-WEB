@@ -1,6 +1,6 @@
 import apiClient from 'api/index'
 import { ResponseType } from 'api/index'
-import { useMutation } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 
 export type ErrorInfo = {
   help: string
@@ -27,16 +27,19 @@ const sendScript = async (body: {
   }
 }
 
-export const useWritingScoreMutation = ({
+export const useWritingScoreQuery = ({
+  script,
   onSuccess,
   onError,
 }: {
+  script: string
   onSuccess: (data: WritingResponse) => void
   onError: (error: Error) => void
 }) => {
-  return useMutation(sendScript, {
-    retry: 5,
+  return useQuery(['writing', script], () => sendScript({ script }), {
     onSuccess,
     onError,
+    retry: false,
+    enabled: !!script,
   })
 }

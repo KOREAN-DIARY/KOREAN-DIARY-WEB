@@ -31,7 +31,7 @@ const sendDiary = async (
   }
 }
 
-export const useWritingScoreMutation = ({
+export const useDiaryMutation = ({
   onSuccess,
   onError,
 }: {

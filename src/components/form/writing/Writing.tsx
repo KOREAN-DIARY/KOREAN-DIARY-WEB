@@ -1,6 +1,5 @@
 import Textarea from 'components/common/textarea/Textarea'
 import { useDiaryContext } from 'hooks/context/useDiaryContext'
-import { useState } from 'react'
 
 const Writing = () => {
   const { diary, setDiary } = useDiaryContext()

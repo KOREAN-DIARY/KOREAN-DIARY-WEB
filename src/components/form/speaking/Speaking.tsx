@@ -1,7 +1,7 @@
 import { getRecorder } from 'utils/record'
 import * as S from './Speaking.style'
 import { RecordRTCPromisesHandler, invokeSaveAsDialog } from 'recordrtc'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Recorder from '../recorder/Recorder'
 import { useSpeakingScoreMutation } from 'hooks/query/useSpeakingScoreMutation'
 import { useDiaryContext } from 'hooks/context/useDiaryContext'
@@ -12,15 +12,23 @@ const getSentenceArray = (str: string) =>
     .split('|')
 
 const Speaking = () => {
-  const {
-    diary: { content },
-  } = useDiaryContext()
+  const { diary, setDiary } = useDiaryContext()
   const [recorder, setRecorder] = useState<RecordRTCPromisesHandler>()
   const [scoreList, setScoreList] = useState<number[]>([])
   const { mutateAsync } = useSpeakingScoreMutation({
     onSuccess: () => {},
     onError: () => {},
   })
+  console.log(diary)
+
+  useEffect(() => {
+    setDiary({
+      ...diary,
+      speaking: scoreList.reduce((acc, value) => acc + value, 0),
+    })
+  }, [scoreList])
+
+  const addScoreList = (score: number) => setScoreList([...scoreList, score])
 
   const record = async () => {
     const recorder = await getRecorder()
@@ -42,18 +50,20 @@ const Speaking = () => {
     formData.append('audio', file)
     const result = await mutateAsync(formData)
     recorder?.destroy()
+    const score = Math.ceil((result?.score || 0) * 20)
+    addScoreList(score)
     return {
       url: URL.createObjectURL(blob),
-      score: Math.ceil((result?.score || 0) * 20),
+      score,
     }
   }
 
   return (
     <S.Container>
-      <S.Diary>{content}</S.Diary>
+      <S.Diary>{diary.content}</S.Diary>
       <S.Divider />
       <S.SentenceGroup>
-        {getSentenceArray(content).map((sentence) => (
+        {getSentenceArray(diary.content).map((sentence) => (
           <S.Sentence key={sentence}>
             <S.SentenceTop>
               <span className="material-icons">play_arrow</span>
