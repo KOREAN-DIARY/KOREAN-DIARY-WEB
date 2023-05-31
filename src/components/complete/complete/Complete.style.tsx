@@ -23,8 +23,3 @@ export const ToList = styled.button`
   height: 3.25rem;
   margin-top: 0.9375rem;
 `
-export const Border = styled.div`
-  border: solid;
-  border-width: 0.125rem;
-  border-color: var(--grey);
-`

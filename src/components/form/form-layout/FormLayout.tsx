@@ -7,6 +7,12 @@ import Speaking from 'components/form/speaking/Speaking'
 import DayGroup from 'components/common/day-group/DayGroup'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import queryString from 'query-string'
+import { useDiaryContext } from 'hooks/context/useDiaryContext'
+import {
+  DiaryRequestType,
+  useDiaryMutation,
+} from 'hooks/query/useDiaryMutation'
+import { format } from 'date-fns'
 
 const steps = [
   {
@@ -42,13 +48,24 @@ const renderStepComponent = (step: number): React.ReactNode => {
 
 const FormLayout = () => {
   const navigate = useNavigate()
+  const { diary } = useDiaryContext()
+  const { mutateAsync } = useDiaryMutation({
+    onSuccess: () => navigate('/complete'),
+    onError: () => alert('retry'),
+  })
   const [searchParams, setSearchParams] = useSearchParams()
   const query = queryString.parse(searchParams.toString())
   const step = query?.step ? Number(query.step) : 0
 
   const changeStep = () => {
     if (step == 4) {
-      navigate('/complete')
+      const payload: DiaryRequestType = {
+        content: diary.content,
+        speaking: diary.speaking,
+        writing: diary.writing,
+        date: format(new Date(), 'yyyy-MM-dd'),
+      }
+      mutateAsync(payload)
     } else {
       setSearchParams({ step: (step + 1).toString() })
     }

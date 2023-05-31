@@ -5,9 +5,9 @@ import { useDiaryContext } from 'hooks/context/useDiaryContext'
 import { useNavigate } from 'react-router-dom'
 
 const DiaryCard = () => {
-  const { selectedDiary } = useDiaryContext()
-  const isDiaryExist = selectedDiary.content
-  const date = isDiaryExist ? new Date(selectedDiary.date) : new Date()
+  const { diary } = useDiaryContext()
+  const isDiaryExist = diary.content
+  const date = isDiaryExist ? new Date(diary.date) : new Date()
   const navigate = useNavigate()
 
   return (
@@ -18,8 +18,8 @@ const DiaryCard = () => {
           일기 작성하기 ✏️
         </S.DiaryButton>
       ) : (
-        <S.DiaryText onClick={() => navigate(`/diary/${selectedDiary.date}`)}>
-          {selectedDiary.content}
+        <S.DiaryText onClick={() => navigate(`/diary/${diary.date}`)}>
+          {diary.content}
         </S.DiaryText>
       )}
     </S.Container>

@@ -21,13 +21,13 @@ const markDate = (date: Date, markedDateList: DiaryType[]) => {
 }
 
 const DiaryCalendar = ({ diaryList }: DiaryCalendarProps) => {
-  const { setSelectedDiary } = useDiaryContext()
+  const { setDiary } = useDiaryContext()
 
   const onClickDay = (date: Date) => {
     const diary = diaryList.find(
       (diary) => diary.date == format(date, 'yyyy-MM-dd')
     )
-    diary ? setSelectedDiary(diary) : setSelectedDiary(initialDiary)
+    diary ? setDiary(diary) : setDiary(initialDiary)
   }
 
   return (

@@ -1,13 +1,13 @@
 import Textarea from 'components/common/textarea/Textarea'
-import { useState } from 'react'
+import { useDiaryContext } from 'hooks/context/useDiaryContext'
 
 const Writing = () => {
-  const [content, setContent] = useState('')
+  const { diary, setDiary } = useDiaryContext()
   return (
     <Textarea
-      value={content}
+      value={diary.content}
       onChange={(text) => {
-        setContent(text)
+        setDiary({ ...diary, content: text })
       }}
     />
   )

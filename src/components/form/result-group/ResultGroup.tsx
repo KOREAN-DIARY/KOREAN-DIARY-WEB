@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import * as S from './ResultGroup.style'
 import GrammarResult from '../grammar-result/GrammarResult'
+import { ErrorInfo } from 'hooks/query/useWritingScoreMutation'
 
 interface ResultGroupProps {
-  text: string
+  errorInfo: ErrorInfo
 }
 
-const ResultGroup = ({ text }: ResultGroupProps) => {
+const ResultGroup = ({ errorInfo }: ResultGroupProps) => {
   const [toggled, setToggled] = useState(false)
 
   const handleToggle = () => {
@@ -14,7 +15,7 @@ const ResultGroup = ({ text }: ResultGroupProps) => {
   }
   return (
     <S.Container>
-      <p>{text}</p>
+      <p>{errorInfo.originalString}</p>
       <S.Toggle onClick={handleToggle}>
         <p>
           {toggled ? '올바른 문장 접기' : '올바른 문장 보기'}{' '}
@@ -25,10 +26,8 @@ const ResultGroup = ({ text }: ResultGroupProps) => {
       </S.Toggle>
       {toggled && (
         <S.Results>
-          <S.RightText>심혈을 기울여 개발한 맞춤법 검사기.</S.RightText>
-          <GrammarResult />
-          <GrammarResult />
-          <GrammarResult />
+          <S.RightText>{errorInfo.correctWord}</S.RightText>
+          <GrammarResult errorInfo={errorInfo} />
         </S.Results>
       )}
     </S.Container>
