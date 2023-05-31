@@ -1,7 +1,8 @@
 import { DiaryType } from 'hooks/query/useDiaryListQuery'
+import { DiaryRequestType } from 'hooks/query/useDiaryMutation'
 import { createContext, useContext, useState } from 'react'
 
-export const initialDiary: DiaryType = {
+export const initialDiary: DiaryType & DiaryRequestType = {
   id: 0,
   content: '',
   date: '',
@@ -10,8 +11,8 @@ export const initialDiary: DiaryType = {
 }
 
 const initialState = {
-  selectedDiary: initialDiary,
-  setSelectedDiary: (_: DiaryType) => {
+  diary: initialDiary,
+  setDiary: (_: DiaryType & DiaryRequestType) => {
     return
   },
 }
@@ -22,9 +23,9 @@ export const DiaryContext = createContext(initialState)
  * use DiaryProvider for selected brand on header
  */
 const DiaryProvider = ({ children }: { children: JSX.Element }) => {
-  const [selectedDiary, setSelectedDiary] = useState<DiaryType>(initialDiary)
+  const [diary, setDiary] = useState<DiaryType & DiaryRequestType>(initialDiary)
   return (
-    <DiaryContext.Provider value={{ selectedDiary, setSelectedDiary }}>
+    <DiaryContext.Provider value={{ diary, setDiary }}>
       {children}
     </DiaryContext.Provider>
   )

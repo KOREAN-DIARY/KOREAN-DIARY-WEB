@@ -1,28 +1,35 @@
-import { useWritingScoreMutation } from 'hooks/query/useWritingScoreMutation'
+import {
+  ErrorInfo,
+  useWritingScoreMutation,
+} from 'hooks/query/useWritingScoreMutation'
 import ResultGroup from '../result-group/ResultGroup'
 import * as S from './Grammar.style'
+import { useDiaryContext } from 'hooks/context/useDiaryContext'
+import { useEffect, useState } from 'react'
 
 const Grammar = () => {
-  const { mutate, isSuccess } = useWritingScoreMutation({
+  const [errorList, setErrorList] = useState<ErrorInfo[]>([])
+  const {
+    diary: { content },
+  } = useDiaryContext()
+  const { mutateAsync, isSuccess } = useWritingScoreMutation({
     // FIXME: add correct handler
     onSuccess: () => {},
     onError: () => {},
   })
 
   const createWritingScore = async (script: string) => {
-    const result = await mutate({ script })
-    return result
+    const result = await mutateAsync({ script })
+    setErrorList(result.errorInfoList)
   }
+
+  useEffect(() => {
+    content && createWritingScore(content)
+  }, [content])
 
   return (
     <S.GrammarWrapper>
-      <S.Diary>
-        오늘의 일기입니다. <S.Wrong>심여를 기울여 만든 마춤뻡 검사기.</S.Wrong>{' '}
-        만들었는데 과연 제대로 될 지는 모르겠다. 아 너무 졸리다. 진짜 졸리다.
-        종강하면 하루종일 잔다 진짜. 근데 종강하려면 아직도 한 달이나 남았네. 이
-        패턴으로 한 달을 더 살아야 된다고?{' '}
-        <S.Wrong>맛춤법 쫌 실수하지 말아봐.</S.Wrong>
-      </S.Diary>
+      <S.Diary>{content}</S.Diary>
       <S.HorizontalLine />
       {isSuccess && (
         <S.ResultContainer>

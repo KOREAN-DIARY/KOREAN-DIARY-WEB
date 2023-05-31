@@ -1,8 +1,8 @@
-import apiClient, { audioClient } from 'api/index'
+import apiClient from 'api/index'
 import { ResponseType } from 'api/index'
 import { useMutation } from 'react-query'
 
-type ErrorInfo = {
+export type ErrorInfo = {
   help: string
   originalString: string
   correctWord: string
@@ -13,7 +13,7 @@ type WritingResponse = {
   errorInfoList: ErrorInfo[]
 }
 
-const sendAudio = async (body: {
+const sendScript = async (body: {
   script: string
 }): Promise<WritingResponse> => {
   try {
@@ -34,7 +34,7 @@ export const useWritingScoreMutation = ({
   onSuccess: (data: WritingResponse) => void
   onError: (error: Error) => void
 }) => {
-  return useMutation('writing', sendAudio, {
+  return useMutation(sendScript, {
     retry: 5,
     onSuccess,
     onError,
