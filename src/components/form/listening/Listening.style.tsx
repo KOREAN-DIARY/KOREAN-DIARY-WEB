@@ -12,12 +12,17 @@ export const ListeningWrapper = styled.article`
   font-size: 1rem;
   line-height: 1.2rem;
   margin-top: 1rem;
+  & > div {
+    font-weight: bold;
+    font-size: 0.875rem;
+    padding: 1rem;
+  }
 `
 
 export const HorizontalLine = styled.hr`
   color: var(--dark-grey);
-  background-color: var(--dark-grey);
-  height: 0.1rem;
+  background-color: var(--grey);
+  height: 1px;
   border-color: var(--dark-grey);
   margin: 1rem 0;
 `

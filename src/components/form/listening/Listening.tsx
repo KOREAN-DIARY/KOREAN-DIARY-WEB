@@ -9,7 +9,7 @@ const Listening = () => {
     오늘은 기분이 조금 무겁기는 했지만, 그래도 삶에서 조금씩 느껴지는 작은 기쁨들을 놓치지 않으며 살아가야겠다는 생각을 했다.'
   return (
     <S.ListeningWrapper>
-      <p>{text}</p>
+      <div>{text}</div>
       <S.HorizontalLine />
       <AudioPlayer text={text} />
     </S.ListeningWrapper>
