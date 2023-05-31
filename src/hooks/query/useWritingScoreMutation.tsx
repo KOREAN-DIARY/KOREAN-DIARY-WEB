@@ -1,4 +1,4 @@
-import { audioClient } from 'api/index'
+import apiClient, { audioClient } from 'api/index'
 import { ResponseType } from 'api/index'
 import { useMutation } from 'react-query'
 
@@ -17,7 +17,7 @@ const sendAudio = async (body: {
   script: string
 }): Promise<WritingResponse> => {
   try {
-    const { data } = await audioClient.post<ResponseType<WritingResponse>>(
+    const { data } = await apiClient.post<ResponseType<WritingResponse>>(
       '/writing',
       body
     )

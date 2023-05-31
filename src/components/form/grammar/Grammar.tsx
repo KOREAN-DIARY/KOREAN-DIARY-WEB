@@ -1,12 +1,19 @@
+import { useWritingScoreMutation } from 'hooks/query/useWritingScoreMutation'
 import ResultGroup from '../result-group/ResultGroup'
 import * as S from './Grammar.style'
 
-interface GrammarProps {
-  diary: string
-  result: object
-}
-
 const Grammar = () => {
+  const { mutate, isSuccess } = useWritingScoreMutation({
+    // FIXME: add correct handler
+    onSuccess: () => {},
+    onError: () => {},
+  })
+
+  const createWritingScore = async (script: string) => {
+    const result = await mutate({ script })
+    return result
+  }
+
   return (
     <S.GrammarWrapper>
       <S.Diary>
@@ -17,15 +24,17 @@ const Grammar = () => {
         <S.Wrong>맛춤법 쫌 실수하지 말아봐.</S.Wrong>
       </S.Diary>
       <S.HorizontalLine />
-      <S.ResultContainer>
-        <S.Text>
-          수정할 문장 <S.Wrong>2</S.Wrong>개
-        </S.Text>
-        <S.ResultGroups>
-          <ResultGroup text="1. 심여를 기울여 만든 마춤뻡 검사기." />
-          <ResultGroup text="2. 맛춤법 쫌 실수하지 말아봐." />
-        </S.ResultGroups>
-      </S.ResultContainer>
+      {isSuccess && (
+        <S.ResultContainer>
+          <S.Text>
+            수정할 문장 <S.Wrong>2</S.Wrong>개
+          </S.Text>
+          <S.ResultGroups>
+            <ResultGroup text="1. 심여를 기울여 만든 마춤뻡 검사기." />
+            <ResultGroup text="2. 맛춤법 쫌 실수하지 말아봐." />
+          </S.ResultGroups>
+        </S.ResultContainer>
+      )}
     </S.GrammarWrapper>
   )
 }
