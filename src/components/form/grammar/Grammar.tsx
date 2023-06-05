@@ -6,9 +6,36 @@ import {
 import ResultGroup from '../result-group/ResultGroup'
 import * as S from './Grammar.style'
 import { useDiaryContext } from 'hooks/context/useDiaryContext'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+
+const highlightScript = (data: WritingResponse) => {
+  const wrongWordList = data?.errorInfoList.map(
+    (err: ErrorInfo) => err.originalString
+  )
+  let highlightedScript = data.script
+  wrongWordList.forEach((word) => {
+    highlightedScript = highlightedScript.replace(
+      word,
+      `<span style="color: var(--red)">${word}</span>`
+    )
+  })
+  return highlightedScript
+}
+
+const correctDiary = (data: WritingResponse) => {
+  let correctedScript = data.script
+  data?.errorInfoList.forEach(
+    (err: ErrorInfo) =>
+      (correctedScript = correctedScript.replace(
+        err.originalString,
+        err.correctWord
+      ))
+  )
+  return correctedScript
+}
 
 const Grammar = () => {
+  const [resultText, setResultText] = useState('')
   const { diary, setDiary } = useDiaryContext()
   const { data, isSuccess } = useWritingScoreQuery({
     script: diary.content,
@@ -16,28 +43,13 @@ const Grammar = () => {
     onSuccess: (data) => {
       setDiary({
         ...diary,
+        content: correctDiary(data),
         writing: 100 - data.errorInfoList.length * 5,
       })
-      getResult(data)
+      setResultText(highlightScript(data))
     },
     onError: () => {},
   })
-
-  const [resultText, setResultText] = useState('')
-  const getResult = (data: WritingResponse) => {
-    const wrong = data?.errorInfoList.map(
-      (err: ErrorInfo) => err.originalString
-    )
-
-    let wrongText = data.script
-    wrong.map((word) => {
-      wrongText = wrongText.replace(
-        word,
-        `<span style="color: var(--red)">${word}</span>`
-      )
-    })
-    setResultText(wrongText)
-  }
 
   return (
     <S.GrammarWrapper>
