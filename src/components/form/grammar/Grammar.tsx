@@ -1,7 +1,12 @@
-import { useWritingScoreQuery } from 'hooks/query/useWritingScoreMutation'
+import {
+  ErrorInfo,
+  WritingResponse,
+  useWritingScoreQuery,
+} from 'hooks/query/useWritingScoreMutation'
 import ResultGroup from '../result-group/ResultGroup'
 import * as S from './Grammar.style'
 import { useDiaryContext } from 'hooks/context/useDiaryContext'
+import { useEffect, useState } from 'react'
 
 const Grammar = () => {
   const { diary, setDiary } = useDiaryContext()
@@ -13,13 +18,30 @@ const Grammar = () => {
         ...diary,
         writing: 100 - data.errorInfoList.length * 5,
       })
+      getResult(data)
     },
     onError: () => {},
   })
 
+  const [resultText, setResultText] = useState('')
+  const getResult = (data: WritingResponse) => {
+    const wrong = data?.errorInfoList.map(
+      (err: ErrorInfo) => err.originalString
+    )
+
+    let wrongText = data.script
+    wrong.map((word) => {
+      wrongText = wrongText.replace(
+        word,
+        `<span style="color: var(--red)">${word}</span>`
+      )
+    })
+    setResultText(wrongText)
+  }
+
   return (
     <S.GrammarWrapper>
-      <S.Diary>{diary.content}</S.Diary>
+      <S.Diary dangerouslySetInnerHTML={{ __html: resultText }}></S.Diary>
       <S.HorizontalLine />
 
       <S.ResultContainer>

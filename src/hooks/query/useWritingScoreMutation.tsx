@@ -8,7 +8,7 @@ export type ErrorInfo = {
   correctWord: string
 }
 
-type WritingResponse = {
+export type WritingResponse = {
   script: string
   errorInfoList: ErrorInfo[]
 }
