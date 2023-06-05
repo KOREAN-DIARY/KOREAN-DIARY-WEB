@@ -8,7 +8,7 @@ export type ErrorInfo = {
   correctWord: string
 }
 
-type WritingResponse = {
+export type WritingResponse = {
   script: string
   errorInfoList: ErrorInfo[]
 }
@@ -36,7 +36,7 @@ export const useWritingScoreQuery = ({
   onSuccess: (data: WritingResponse) => void
   onError: (error: Error) => void
 }) => {
-  return useQuery(['writing', script], () => sendScript({ script }), {
+  return useQuery(['writing'], () => sendScript({ script }), {
     onSuccess,
     onError,
     retry: false,

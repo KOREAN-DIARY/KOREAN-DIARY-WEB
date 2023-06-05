@@ -1,9 +1,41 @@
-import { useWritingScoreQuery } from 'hooks/query/useWritingScoreMutation'
+import {
+  ErrorInfo,
+  WritingResponse,
+  useWritingScoreQuery,
+} from 'hooks/query/useWritingScoreMutation'
 import ResultGroup from '../result-group/ResultGroup'
 import * as S from './Grammar.style'
 import { useDiaryContext } from 'hooks/context/useDiaryContext'
+import { useState } from 'react'
+
+const highlightScript = (data: WritingResponse) => {
+  const wrongWordList = data?.errorInfoList.map(
+    (err: ErrorInfo) => err.originalString
+  )
+  let highlightedScript = data.script
+  wrongWordList.forEach((word) => {
+    highlightedScript = highlightedScript.replace(
+      word,
+      `<span style="color: var(--red)">${word}</span>`
+    )
+  })
+  return highlightedScript
+}
+
+const correctDiary = (data: WritingResponse) => {
+  let correctedScript = data.script
+  data?.errorInfoList.forEach(
+    (err: ErrorInfo) =>
+      (correctedScript = correctedScript.replace(
+        err.originalString,
+        err.correctWord
+      ))
+  )
+  return correctedScript
+}
 
 const Grammar = () => {
+  const [resultText, setResultText] = useState('')
   const { diary, setDiary } = useDiaryContext()
   const { data, isSuccess } = useWritingScoreQuery({
     script: diary.content,
@@ -11,15 +43,17 @@ const Grammar = () => {
     onSuccess: (data) => {
       setDiary({
         ...diary,
+        content: correctDiary(data),
         writing: 100 - data.errorInfoList.length * 5,
       })
+      setResultText(highlightScript(data))
     },
     onError: () => {},
   })
 
   return (
     <S.GrammarWrapper>
-      <S.Diary>{diary.content}</S.Diary>
+      <S.Diary dangerouslySetInnerHTML={{ __html: resultText }}></S.Diary>
       <S.HorizontalLine />
 
       <S.ResultContainer>

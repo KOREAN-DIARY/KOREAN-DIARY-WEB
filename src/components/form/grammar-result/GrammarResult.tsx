@@ -14,7 +14,7 @@ const GrammarResult = ({ errorInfo }: { errorInfo: ErrorInfo }) => {
         <S.Icon className="material-icons">error_outline</S.Icon>
         맞춤법
       </p> */}
-      <S.Help>{errorInfo.help}</S.Help>
+      <S.Help dangerouslySetInnerHTML={{ __html: errorInfo.help }} />
     </S.ResultWrapper>
   )
 }
