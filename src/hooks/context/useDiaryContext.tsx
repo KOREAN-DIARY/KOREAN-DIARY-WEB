@@ -5,6 +5,7 @@ import { createContext, useContext, useState } from 'react'
 export const initialDiary: DiaryType & DiaryRequestType = {
   id: 0,
   content: '',
+  originalContent: '',
   date: '',
   writing: 0,
   speaking: 0,

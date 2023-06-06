@@ -5,13 +5,14 @@ import Grammar from 'components/form/grammar/Grammar'
 import Listening from 'components/form/listening/Listening'
 import Speaking from 'components/form/speaking/Speaking'
 import DayGroup from 'components/common/day-group/DayGroup'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import queryString from 'query-string'
 import { useDiaryContext } from 'hooks/context/useDiaryContext'
 import {
   DiaryRequestType,
   useDiaryMutation,
 } from 'hooks/query/useDiaryMutation'
+import { useEffect } from 'react'
 
 const steps = [
   {
@@ -47,7 +48,9 @@ const renderStepComponent = (step: number): React.ReactNode => {
 
 const FormLayout = () => {
   const navigate = useNavigate()
+  const { date } = useParams()
   const { diary } = useDiaryContext()
+  const { setDiary } = useDiaryContext()
   const { mutateAsync } = useDiaryMutation({
     onSuccess: (data) => {
       const { speaking, writing } = data
@@ -64,9 +67,11 @@ const FormLayout = () => {
       const payload: DiaryRequestType = diary
       mutateAsync(payload)
     } else {
-      setSearchParams({ step: (step + 1).toString() })
+      setSearchParams({ ...searchParams, step: (step + 1).toString() })
     }
   }
+
+  useEffect(() => setDiary({ ...diary, date: date || '' }), [])
 
   return (
     <S.Container>
@@ -77,7 +82,7 @@ const FormLayout = () => {
       </S.HStack>
       <Stepper steps={steps} activeStep={step} />
 
-      <DayGroup date="2023-05-08" />
+      <DayGroup date={diary.date} />
       {renderStepComponent(step)}
 
       <S.HStack>

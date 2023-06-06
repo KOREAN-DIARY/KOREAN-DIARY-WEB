@@ -44,7 +44,7 @@ const Grammar = ({ defaultDiary }: GrammarProps) => {
   const { diary: diaryContext, setDiary } = useDiaryContext()
   const diary = defaultDiary || diaryContext
   const { data, isSuccess } = useWritingScoreQuery({
-    script: diary.content,
+    script: diary.originalContent,
     // FIXME: add correct handler
     onSuccess: (data) => {
       setDiary({

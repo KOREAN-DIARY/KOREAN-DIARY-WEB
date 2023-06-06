@@ -5,6 +5,7 @@ import { ResponseType } from 'api/index'
 export type DiaryType = {
   id: number
   content: string
+  originalContent: string
   date: string
   writing: number
   speaking: number
