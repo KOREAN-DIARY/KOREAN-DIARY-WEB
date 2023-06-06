@@ -12,7 +12,6 @@ import {
   DiaryRequestType,
   useDiaryMutation,
 } from 'hooks/query/useDiaryMutation'
-import { format } from 'date-fns'
 
 const steps = [
   {
@@ -50,7 +49,10 @@ const FormLayout = () => {
   const navigate = useNavigate()
   const { diary } = useDiaryContext()
   const { mutateAsync } = useDiaryMutation({
-    onSuccess: () => navigate('/complete'),
+    onSuccess: (data) => {
+      const { speaking, writing } = data
+      navigate(`/complete?speaking=${speaking}&writing=${writing}`)
+    },
     onError: () => alert('retry'),
   })
   const [searchParams, setSearchParams] = useSearchParams()
@@ -59,12 +61,7 @@ const FormLayout = () => {
 
   const changeStep = () => {
     if (step == 4) {
-      const payload: DiaryRequestType = {
-        content: diary.content,
-        speaking: diary.speaking,
-        writing: diary.writing,
-        date: format(new Date(), 'yyyy-MM-dd'),
-      }
+      const payload: DiaryRequestType = diary
       mutateAsync(payload)
     } else {
       setSearchParams({ step: (step + 1).toString() })

@@ -10,6 +10,7 @@ export const Textarea = styled.textarea`
   font-weight: bold;
   border: none;
   white-space: normal;
+  line-height: 150%;
   resize: none;
   padding: 1rem;
   outline: none;

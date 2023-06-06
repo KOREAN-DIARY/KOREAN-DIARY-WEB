@@ -27,7 +27,9 @@ const DiaryCalendar = ({ diaryList }: DiaryCalendarProps) => {
     const diary = diaryList.find(
       (diary) => diary.date == format(date, 'yyyy-MM-dd')
     )
-    diary ? setDiary(diary) : setDiary(initialDiary)
+    diary
+      ? setDiary(diary)
+      : setDiary({ ...initialDiary, date: format(date, 'yyyy-MM-dd') })
   }
 
   return (
