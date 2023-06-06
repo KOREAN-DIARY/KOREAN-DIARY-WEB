@@ -7,6 +7,11 @@ import ResultGroup from '../result-group/ResultGroup'
 import * as S from './Grammar.style'
 import { useDiaryContext } from 'hooks/context/useDiaryContext'
 import { useState } from 'react'
+import { DiaryType } from 'hooks/query/useDiaryListQuery'
+
+interface GrammarProps {
+  defaultDiary?: DiaryType
+}
 
 const highlightScript = (data: WritingResponse) => {
   const wrongWordList = data?.errorInfoList.map(
@@ -28,15 +33,16 @@ const correctDiary = (data: WritingResponse) => {
     (err: ErrorInfo) =>
       (correctedScript = correctedScript.replace(
         err.originalString,
-        err.correctWord
+        err.correctWord.split('|')[0]
       ))
   )
   return correctedScript
 }
 
-const Grammar = () => {
+const Grammar = ({ defaultDiary }: GrammarProps) => {
   const [resultText, setResultText] = useState('')
-  const { diary, setDiary } = useDiaryContext()
+  const { diary: diaryContext, setDiary } = useDiaryContext()
+  const diary = defaultDiary || diaryContext
   const { data, isSuccess } = useWritingScoreQuery({
     script: diary.content,
     // FIXME: add correct handler

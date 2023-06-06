@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query'
-import apiClient, { ResponseType } from 'api/index'
+import apiClient from 'api/index'
 import { DiaryType } from './useDiaryListQuery'
 import format from 'date-fns/format'
 
