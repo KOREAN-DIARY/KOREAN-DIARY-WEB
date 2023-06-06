@@ -14,7 +14,7 @@ const DiaryCard = () => {
     <S.Container>
       <DayGroup date={date} />
       {!isDiaryExist ? (
-        <S.DiaryButton onClick={() => navigate('/form?step=1')}>
+        <S.DiaryButton onClick={() => navigate(`/form/${date}?step=1`)}>
           일기 작성하기 ✏️
         </S.DiaryButton>
       ) : (
