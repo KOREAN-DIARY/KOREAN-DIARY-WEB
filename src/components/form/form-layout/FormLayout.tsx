@@ -64,7 +64,13 @@ const FormLayout = () => {
 
   const changeStep = () => {
     if (step == 4) {
-      const payload: DiaryRequestType = diary
+      const payload: DiaryRequestType = {
+        content: diary.content,
+        originalContent: diary.originalContent,
+        date: diary.date,
+        writing: diary.writing,
+        speaking: diary.speaking,
+      }
       mutateAsync(payload)
     } else {
       setSearchParams({ ...searchParams, step: (step + 1).toString() })
