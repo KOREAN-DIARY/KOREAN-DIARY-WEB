@@ -19,12 +19,13 @@ const Speaking = () => {
     onSuccess: () => {},
     onError: () => {},
   })
-  console.log(diary)
 
   useEffect(() => {
     setDiary({
       ...diary,
-      speaking: scoreList.reduce((acc, value) => acc + value, 0),
+      speaking: Math.ceil(
+        scoreList.reduce((acc, value) => acc + value, 0) / scoreList.length
+      ),
     })
   }, [scoreList])
 

@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     element: <Main />,
   },
   {
-    path: '/form',
+    path: '/form/:date',
     element: <Form />,
   },
   {

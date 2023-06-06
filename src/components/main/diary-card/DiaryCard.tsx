@@ -7,14 +7,14 @@ import { useNavigate } from 'react-router-dom'
 const DiaryCard = () => {
   const { diary } = useDiaryContext()
   const isDiaryExist = diary.content
-  const date = isDiaryExist ? new Date(diary.date) : new Date()
+  const date = diary.date || format(new Date(), 'yyyy-MM-dd')
   const navigate = useNavigate()
 
   return (
     <S.Container>
-      <DayGroup date={format(date, 'yyyy-MM-dd')} />
+      <DayGroup date={date} />
       {!isDiaryExist ? (
-        <S.DiaryButton onClick={() => navigate('/form?step=1')}>
+        <S.DiaryButton onClick={() => navigate(`/form/${date}?step=1`)}>
           일기 작성하기 ✏️
         </S.DiaryButton>
       ) : (

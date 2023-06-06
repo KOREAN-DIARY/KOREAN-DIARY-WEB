@@ -5,9 +5,9 @@ const Writing = () => {
   const { diary, setDiary } = useDiaryContext()
   return (
     <Textarea
-      value={diary.content}
+      value={diary.originalContent}
       onChange={(text) => {
-        setDiary({ ...diary, content: text })
+        setDiary({ ...diary, originalContent: text })
       }}
     />
   )

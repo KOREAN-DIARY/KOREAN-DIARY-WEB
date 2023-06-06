@@ -8,7 +8,7 @@ export const getScoreColor = (score: number) => {
   if (score <= 70) {
     return 'yellow'
   }
-  if (score <= 90) {
+  if (score <= 80) {
     return 'green'
   }
   if (score <= 100) {

@@ -12,6 +12,7 @@ export type DiaryResponseType = {
 
 export type DiaryRequestType = {
   content: string
+  originalContent: string
   date: string
   writing: number
   speaking: number
