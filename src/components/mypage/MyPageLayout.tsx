@@ -13,7 +13,15 @@ const errorMessage = () => {
 const MyPageLayout = () => {
   return (
     <S.Container>
-      <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+      <S.Image src={require('assets/images/mypage.png')} />
+      <GoogleLogin
+        shape="circle"
+        width="3rem"
+        text="signin_with"
+        onSuccess={responseMessage}
+        onError={errorMessage}
+      />
+      <S.ImageGroup src={require('assets/images/mypage-images.png')} />
     </S.Container>
   )
 }

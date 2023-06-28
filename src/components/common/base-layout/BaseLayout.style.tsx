@@ -6,8 +6,8 @@ export const Container = styled.div`
   flex-direction: column;
 `
 
-export const Content = styled.section`
+export const Content = styled.section<{ hasPadding?: boolean }>`
   flex: 1;
   display: flex;
-  padding: 1rem;
+  padding: ${({ hasPadding }) => (hasPadding ? '1rem' : 0)};
 `

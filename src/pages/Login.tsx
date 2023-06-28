@@ -3,7 +3,7 @@ import MyPageLayout from 'components/mypage/MyPageLayout'
 
 const Login = () => {
   return (
-    <BaseLayout>
+    <BaseLayout hasPadding={false}>
       <MyPageLayout />
     </BaseLayout>
   )
