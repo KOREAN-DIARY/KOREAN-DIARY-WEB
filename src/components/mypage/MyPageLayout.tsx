@@ -1,3 +1,4 @@
+import * as S from './MyPageLayout.style'
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google'
 import jwtDecode from 'jwt-decode'
 
@@ -11,9 +12,9 @@ const errorMessage = () => {
 
 const MyPageLayout = () => {
   return (
-    <div>
+    <S.Container>
       <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
-    </div>
+    </S.Container>
   )
 }
 
