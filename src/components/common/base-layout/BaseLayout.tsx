@@ -4,13 +4,14 @@ import Header from 'components/common/header/Header'
 
 interface BaseLayoutProps {
   children: React.ReactNode
+  hasPadding?: boolean
 }
 
-const BaseLayout = ({ children }: BaseLayoutProps) => {
+const BaseLayout = ({ children, hasPadding = true }: BaseLayoutProps) => {
   return (
     <S.Container>
       <Header />
-      <S.Content>{children}</S.Content>
+      <S.Content hasPadding={hasPadding}>{children}</S.Content>
     </S.Container>
   )
 }
