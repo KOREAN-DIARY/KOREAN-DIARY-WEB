@@ -1,10 +1,10 @@
 import BaseLayout from 'components/common/base-layout/BaseLayout'
-import MyPageLayout from 'components/mypage/MyPageLayout'
+import LoginLayout from 'components/login/LoginLayout'
 
 const Login = () => {
   return (
     <BaseLayout hasPadding={false}>
-      <MyPageLayout />
+      <LoginLayout />
     </BaseLayout>
   )
 }

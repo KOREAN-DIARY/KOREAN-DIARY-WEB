@@ -1,4 +1,4 @@
-import * as S from './MyPageLayout.style'
+import * as S from './LoginLayout.style'
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google'
 import jwtDecode from 'jwt-decode'
 
@@ -10,10 +10,10 @@ const errorMessage = () => {
   console.log('error')
 }
 
-const MyPageLayout = () => {
+const LoginLayout = () => {
   return (
     <S.Container>
-      <S.Image src={require('assets/images/mypage.png')} />
+      <S.Image src={require('assets/images/login.png')} />
       <GoogleLogin
         shape="circle"
         width="3rem"
@@ -21,9 +21,9 @@ const MyPageLayout = () => {
         onSuccess={responseMessage}
         onError={errorMessage}
       />
-      <S.ImageGroup src={require('assets/images/mypage-images.png')} />
+      <S.ImageGroup src={require('assets/images/login-images.png')} />
     </S.Container>
   )
 }
 
-export default MyPageLayout
+export default LoginLayout
