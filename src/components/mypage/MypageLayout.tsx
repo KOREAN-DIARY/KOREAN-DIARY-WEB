@@ -1,18 +1,23 @@
 import * as S from './MypageLayout.style'
 import { getScoreColor } from 'utils/get-score-color'
 import { getScoreText } from 'utils/get-score-text'
+import BaseLayout from 'components/common/base-layout/BaseLayout'
 
 const MyPageLayout = () => {
   return (
     <S.Container>
-      <S.MyInfo>
-        <S.Title>내 정보</S.Title>
-      </S.MyInfo>
-      <S.MyScore>
-        <S.Title>나의 점수</S.Title>
-      </S.MyScore>
+      <BaseLayout>
+        <S.Top>
+          <S.MyInfo>
+            <S.Banner>내 정보</S.Banner>
+          </S.MyInfo>
+          <S.MyScore>
+            <S.Banner>나의 점수</S.Banner>
+          </S.MyScore>
+        </S.Top>
+      </BaseLayout>
+      <S.Line></S.Line>
       <S.Tab>
-        <S.Line></S.Line>
         <S.Title>
           <button>공지사항</button>
         </S.Title>
@@ -22,9 +27,9 @@ const MyPageLayout = () => {
         <S.Title>
           <button>개발자 정보</button>
         </S.Title>
-        <S.Context>
+        <S.Title>
           <button>로그아웃</button>
-        </S.Context>
+        </S.Title>
       </S.Tab>
     </S.Container>
   )
