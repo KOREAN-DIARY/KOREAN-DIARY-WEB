@@ -11,9 +11,7 @@ const MyPageLayout = () => {
           <S.MyInfo>
             <S.Banner>내 정보</S.Banner>
           </S.MyInfo>
-          <S.MyScore>
-            <S.Banner>나의 점수</S.Banner>
-          </S.MyScore>
+          <S.MyScore>나의 점수</S.MyScore>
         </S.Top>
       </BaseLayout>
       <S.Line></S.Line>
@@ -27,9 +25,7 @@ const MyPageLayout = () => {
         <S.Title>
           <button>개발자 정보</button>
         </S.Title>
-        <S.Title>
-          <button>로그아웃</button>
-        </S.Title>
+        <S.Title>로그아웃</S.Title>
       </S.Tab>
     </S.Container>
   )

@@ -24,6 +24,10 @@ export const MyScore = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  font-size: 1rem;
+  color: var(--black);
+  font-weight: bold;
+  text-align: left;
 `
 
 export const Tab = styled.div`
@@ -32,13 +36,9 @@ export const Tab = styled.div`
   gap: 2rem;
   margin-top: 1rem;
 `
-export const Banner = styled.div`
-  font-size: 2rem;
-  color: var(--dark-grey);
-  font-weight: bold;
-  text-align: left;
-`
-export const Title = styled.div`
+export const Banner = styled.div``
+
+export const Title = styled.button`
   font-size: 1rem;
   color: var(--dark-grey);
   font-weight: bold;
