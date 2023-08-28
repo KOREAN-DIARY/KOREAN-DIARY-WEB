@@ -1,9 +1,7 @@
-import BaseLayout from 'components/common/base-layout/BaseLayout'
-import Graph from 'components/graph/Graph'
-import DiaryProvider from 'hooks/context/useDiaryContext'
+import MyPageLayout from 'components/mypage/MypageLayout'
 
 const MyPage = () => {
-  return <Graph />
+  return <MyPageLayout />
 }
 
 export default MyPage
