@@ -10,42 +10,74 @@ export const Container = styled.div`
 export const Top = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4rem;
-  margin-top: 2rem;
-  margin-bottom: 4rem;
+  gap: 3rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 `
 export const MyInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
 `
+export const MyInfo1 = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+`
+export const MyInfo2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  gap: 0.5rem;
+`
+export const MyInfo3 = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+`
 
 export const MyScore = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  font-size: 1rem;
+  font-size: 18px;
   color: var(--black);
   font-weight: bold;
   text-align: left;
 `
-
+export const Banner = styled.div`
+  gap: 1rem;
+  font-size: 18px;
+  color: var(--black);
+  font-weight: bold;
+  text-align: left;
+`
+export const Name = styled.div`
+  gap: 1rem;
+  font-size: 18px;
+  color: var(--black);
+  font-weight: medium;
+`
+export const ID = styled.div`
+  gap: 1rem;
+  font-size: 13px;
+  color: var(--black);
+  font-weight: medium;
+`
 export const Tab = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   margin-top: 1rem;
 `
-export const Banner = styled.div``
-
 export const Title = styled.button`
-  font-size: 1rem;
-  color: var(--dark-grey);
+  font-size: 15px;
+  color: var(--black);
   font-weight: bold;
   text-align: left;
 `
 export const Context = styled.div`
-  font-size: 18px;
+  font-size: 15px;
   color: var(--grey);
   font-weight: bold;
   text-align: left;
@@ -53,9 +85,8 @@ export const Context = styled.div`
 
 export const Line = styled.div`
   width: 100%;
-  height: 0.2rem;
-  color: var(--grey);
-  background-color: var(--grey);
+  height: 0.7px;
+  background-color: var(--dark-grey);
   border: 0;
   gap: 3rem;
 `
