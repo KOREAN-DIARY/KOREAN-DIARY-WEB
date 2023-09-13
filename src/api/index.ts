@@ -34,11 +34,11 @@ export const logout = () => {
 }
 
 const apiClient = axios.create({
-  baseURL: `http://52.79.119.10:8080`,
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: { Accept: 'application/json' },
 })
 export const audioClient = axios.create({
-  baseURL: `http://52.79.119.10:8080`,
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: { 'Content-Type': 'multipart/form-data' },
   withCredentials: true,
 })
