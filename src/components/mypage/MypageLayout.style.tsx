@@ -35,7 +35,10 @@ export const MyInfo3 = styled.div`
   flex-direction: row;
   gap: 0.5rem;
 `
-
+export const Score = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 export const MyScore = styled.div`
   display: flex;
   flex-direction: column;

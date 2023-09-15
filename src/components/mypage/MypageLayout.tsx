@@ -2,6 +2,7 @@ import * as S from './MypageLayout.style'
 import { getScoreColor } from 'utils/get-score-color'
 import { getScoreText } from 'utils/get-score-text'
 import BaseLayout from 'components/common/base-layout/BaseLayout'
+import Graph from 'components/graph/Graph'
 
 const MyPageLayout = () => {
   return (
@@ -29,7 +30,10 @@ const MyPageLayout = () => {
               </S.MyInfo2>
             </S.MyInfo1>
           </S.MyInfo>
-          <S.MyScore>나의 점수</S.MyScore>
+          <S.Score>
+            <S.MyScore>나의 점수</S.MyScore>
+            <Graph></Graph>
+          </S.Score>
         </S.Top>
       </BaseLayout>
       <S.Line></S.Line>
