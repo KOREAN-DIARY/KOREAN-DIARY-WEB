@@ -138,7 +138,6 @@ const Graph = () => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: '날짜',
           legendOffset: 36,
           legendPosition: 'middle',
         }}
@@ -146,7 +145,6 @@ const Graph = () => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: '점수',
           legendOffset: -40,
           legendPosition: 'middle',
         }}
@@ -163,7 +161,7 @@ const Graph = () => {
             toggleSerie: true,
             justify: false,
             translateX: 0,
-            translateY: 80,
+            translateY: 50,
             itemsSpacing: 0,
             itemDirection: 'left-to-right',
             itemWidth: 80,

@@ -6,8 +6,8 @@ import Graph from 'components/graph/Graph'
 
 const MyPageLayout = () => {
   return (
-    <S.Container>
-      <BaseLayout>
+    <BaseLayout>
+      <S.Container>
         <S.Top>
           <S.MyInfo>
             <S.Banner>내 정보</S.Banner>
@@ -31,19 +31,20 @@ const MyPageLayout = () => {
             </S.MyInfo1>
           </S.MyInfo>
           <S.Score>
-            <S.MyScore>나의 점수</S.MyScore>
-            <Graph></Graph>
+            <S.Banner>나의 점수</S.Banner>
+            <Graph />
           </S.Score>
         </S.Top>
-      </BaseLayout>
-      <S.Line></S.Line>
-      <S.Tab>
-        <S.Title>공지사항</S.Title>
-        <S.Title>고객센터</S.Title>
-        <S.Title>개발자 정보</S.Title>
-        <S.Context>로그아웃</S.Context>
-      </S.Tab>
-    </S.Container>
+
+        <S.Line></S.Line>
+        <S.Tab>
+          <S.Title>공지사항</S.Title>
+          <S.Title>고객센터</S.Title>
+          <S.Title>개발자 정보</S.Title>
+          <S.Context>로그아웃</S.Context>
+        </S.Tab>
+      </S.Container>
+    </BaseLayout>
   )
 }
 
