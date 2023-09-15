@@ -80,7 +80,7 @@ export const Context = styled.div`
 `
 
 export const Line = styled.div`
-  width: 90%;
+  width: 100%;
   height: 0.7px;
   background-color: var(--dark-grey);
   border: 0;

@@ -122,7 +122,7 @@ const Graph = () => {
     <S.GraphWrapper>
       <ResponsiveLine
         data={data}
-        margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
+        margin={{ top: 50, right: 30, bottom: 50, left: 30 }}
         xScale={{ type: 'point' }}
         yScale={{
           type: 'linear',
