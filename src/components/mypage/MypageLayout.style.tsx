@@ -6,6 +6,7 @@ export const Container = styled.div`
   gap: 1rem;
   margin-left: 2rem;
   margin-right: 2rem;
+  width: 100%;
 `
 export const Top = styled.div`
   display: flex;
@@ -13,6 +14,7 @@ export const Top = styled.div`
   gap: 3rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
+  width: 100%;
 `
 export const MyInfo = styled.div`
   display: flex;
@@ -38,15 +40,6 @@ export const MyInfo3 = styled.div`
 export const Score = styled.div`
   display: flex;
   flex-direction: column;
-`
-export const MyScore = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  font-size: 18px;
-  color: var(--black);
-  font-weight: bold;
-  text-align: left;
 `
 export const Banner = styled.div`
   gap: 1rem;
@@ -87,7 +80,7 @@ export const Context = styled.div`
 `
 
 export const Line = styled.div`
-  width: 100%;
+  width: 90%;
   height: 0.7px;
   background-color: var(--dark-grey);
   border: 0;
