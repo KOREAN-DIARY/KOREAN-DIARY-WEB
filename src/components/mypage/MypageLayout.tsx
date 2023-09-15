@@ -3,6 +3,8 @@ import { getScoreColor } from 'utils/get-score-color'
 import { getScoreText } from 'utils/get-score-text'
 import BaseLayout from 'components/common/base-layout/BaseLayout'
 import Graph from 'components/graph/Graph'
+import ChartProvider from 'hooks/context/useChartContext'
+import { useChartQuery } from 'hooks/query/useChartQuery'
 
 const MyPageLayout = () => {
   return (
@@ -32,7 +34,9 @@ const MyPageLayout = () => {
           </S.MyInfo>
           <S.Score>
             <S.Banner>나의 점수</S.Banner>
-            <Graph />
+            <ChartProvider>
+              <Graph />
+            </ChartProvider>
           </S.Score>
         </S.Top>
 
