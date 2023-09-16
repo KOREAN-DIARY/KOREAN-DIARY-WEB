@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import * as S from './Header.style'
+import { useUserDetailQuery } from 'hooks/query/useUserDetailQuery'
+import ProfileImg from '../profile-img/ProfileImg'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -10,11 +12,7 @@ const Header = () => {
       </button>
       <S.Profile>
         <button onClick={() => navigate('/my')}>
-          <img
-            src={require('assets/images/profile.png')}
-            width={30}
-            height={30}
-          />
+          <ProfileImg width={30} height={30} />
         </button>
       </S.Profile>
     </S.Header>

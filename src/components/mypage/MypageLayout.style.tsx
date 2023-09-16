@@ -21,6 +21,7 @@ export const MyInfo = styled.div`
   flex-direction: column;
   gap: 1rem;
 `
+
 export const MyInfo1 = styled.div`
   display: flex;
   flex-direction: row;

@@ -3,8 +3,16 @@ import { getScoreColor } from 'utils/get-score-color'
 import { getScoreText } from 'utils/get-score-text'
 import BaseLayout from 'components/common/base-layout/BaseLayout'
 import Graph from 'components/graph/Graph'
+import { useUserDetailQuery } from 'hooks/query/useUserDetailQuery'
+import ProfileImg from 'components/common/profile-img/ProfileImg'
 
 const MyPageLayout = () => {
+  const { data, isSuccess } = useUserDetailQuery({
+    onSuccess: () => {
+      return data
+    },
+  })
+
   return (
     <BaseLayout>
       <S.Container>
@@ -12,20 +20,20 @@ const MyPageLayout = () => {
           <S.MyInfo>
             <S.Banner>내 정보</S.Banner>
             <S.MyInfo1>
-              <img
-                src={require('assets/images/Ellipse 82.png')}
-                width={74}
-                height={74}
-              />
+              <ProfileImg width={74} height={74} />
               <S.MyInfo2>
-                <S.Name>홍길동</S.Name>
+                <S.Name>
+                  {data?.name === undefined ? '홍길동' : data.name}
+                </S.Name>
                 <S.MyInfo3>
                   <img
                     src={require('assets/images/Google-icon.png')}
                     width={15}
                     height={14}
                   />
-                  <S.ID>userID@gmail.com</S.ID>
+                  <S.ID>
+                    {data?.email === undefined ? 'user@gmail.com' : data.email}
+                  </S.ID>
                 </S.MyInfo3>
               </S.MyInfo2>
             </S.MyInfo1>
@@ -35,7 +43,6 @@ const MyPageLayout = () => {
             <Graph />
           </S.Score>
         </S.Top>
-
         <S.Line></S.Line>
         <S.Tab>
           <S.Title>공지사항</S.Title>
