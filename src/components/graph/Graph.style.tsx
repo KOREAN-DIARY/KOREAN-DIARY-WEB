@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
 export const GraphWrapper = styled.div`
-  width: 25.5rem;
+  width: 100%;
   height: 300px;
 `
