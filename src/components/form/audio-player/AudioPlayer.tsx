@@ -4,9 +4,10 @@ import { useState } from 'react'
 
 interface AudioPlayerProps {
   text: string
+  size: string
 }
 
-const AudioPlayer = ({ text }: AudioPlayerProps) => {
+const AudioPlayer = ({ text, size }: AudioPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false)
   const playAudio = (text: string) => {
     speak(text, window.speechSynthesis)
@@ -25,7 +26,7 @@ const AudioPlayer = ({ text }: AudioPlayerProps) => {
 
   return (
     <button onClick={handleAudio}>
-      <S.Icon className="material-icons">
+      <S.Icon className="material-icons" style={{ fontSize: size }}>
         {isPlaying ? 'pause' : 'play_arrow'}
       </S.Icon>
     </button>
