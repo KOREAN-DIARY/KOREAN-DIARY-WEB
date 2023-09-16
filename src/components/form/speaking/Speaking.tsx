@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import Recorder from '../recorder/Recorder'
 import { useSpeakingScoreMutation } from 'hooks/query/useSpeakingScoreMutation'
 import { useDiaryContext } from 'hooks/context/useDiaryContext'
+import AudioPlayer from '../audio-player/AudioPlayer'
 
 const getSentenceArray = (str: string) =>
   str
@@ -67,7 +68,7 @@ const Speaking = () => {
         {getSentenceArray(diary.content).map((sentence) => (
           <S.Sentence key={sentence}>
             <S.SentenceTop>
-              <span className="material-icons">play_arrow</span>
+              <AudioPlayer text={sentence} size="1.5rem" />
               {sentence}
             </S.SentenceTop>
             <S.SentenceBottom>

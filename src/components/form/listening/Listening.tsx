@@ -10,7 +10,7 @@ const Listening = () => {
     <S.ListeningWrapper>
       <div>{content}</div>
       <S.HorizontalLine />
-      <AudioPlayer text={content} />
+      <AudioPlayer text={content} size="2.5rem" />
     </S.ListeningWrapper>
   )
 }

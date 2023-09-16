@@ -29,7 +29,7 @@ export const speak = async (textToRead: string, synth: SpeechSynthesis) => {
     const utterThis = new SpeechSynthesisUtterance(textToRead)
     utterThis.onend = function (event) {}
     utterThis.onerror = function (event) {}
-    utterThis.rate = 0.1
+    utterThis.rate = 0.75
     utterThis.pitch = pitch
 
     synth.cancel()
