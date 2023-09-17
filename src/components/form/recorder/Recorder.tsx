@@ -27,19 +27,16 @@ const Recorder = ({ sentence, onSuccess }: RecorderProps) => {
     onError: () => {},
   })
 
-  useEffect(() => {
-    const createRecorder = async () => {
-      const newRecorder = await getRecorder()
-      setRecorder(newRecorder)
-    }
-    createRecorder()
-
-    return () => setRecorder(undefined)
-  }, [])
+  const createRecorder = async () => {
+    const newRecorder = await getRecorder()
+    return newRecorder
+  }
 
   const record = async () => {
-    await recorder?.reset()
-    recorder?.startRecording()
+    const newRecorder = await createRecorder()
+    await newRecorder.reset()
+    newRecorder.startRecording()
+    setRecorder(newRecorder)
   }
 
   const stop = async (
@@ -56,7 +53,7 @@ const Recorder = ({ sentence, onSuccess }: RecorderProps) => {
     formData.append('script', sentence)
     formData.append('audio', file)
     const result = await mutateAsync(formData)
-    recorder?.destroy()
+    await recorder?.destroy()
     const score = Math.ceil((result?.score || 0) * 20)
     onSuccess(score)
     return {
