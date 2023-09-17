@@ -14,12 +14,7 @@ const getSentenceArray = (str: string) =>
 
 const Speaking = () => {
   const { diary, setDiary } = useDiaryContext()
-  const [recorder, setRecorder] = useState<RecordRTCPromisesHandler>()
   const [scoreList, setScoreList] = useState<number[]>([])
-  const { mutateAsync } = useSpeakingScoreMutation({
-    onSuccess: () => {},
-    onError: () => {},
-  })
 
   useEffect(() => {
     setDiary({
@@ -31,35 +26,6 @@ const Speaking = () => {
   }, [scoreList])
 
   const addScoreList = (score: number) => setScoreList([...scoreList, score])
-
-  const record = async () => {
-    const recorder = await getRecorder()
-    recorder.startRecording()
-    setRecorder(recorder)
-  }
-
-  const stop = async (
-    sentence: string
-  ): Promise<{ score: number; url: string }> => {
-    await recorder?.stopRecording()
-    const blob = await recorder?.getBlob()
-    if (!blob) {
-      return { url: '', score: 0 }
-    }
-    const file = new File([blob], 'audio.pcm')
-
-    const formData = new FormData()
-    formData.append('script', sentence)
-    formData.append('audio', file)
-    const result = await mutateAsync(formData)
-    recorder?.destroy()
-    const score = Math.ceil((result?.score || 0) * 20)
-    addScoreList(score)
-    return {
-      url: URL.createObjectURL(blob),
-      score,
-    }
-  }
 
   return (
     <S.Container>
@@ -73,7 +39,10 @@ const Speaking = () => {
               {sentence}
             </S.SentenceTop>
             <S.SentenceBottom>
-              <Recorder record={record} stop={() => stop(sentence)} />
+              <Recorder
+                sentence={sentence}
+                onSuccess={(score) => addScoreList(score)}
+              />
             </S.SentenceBottom>
           </S.Sentence>
         ))}
