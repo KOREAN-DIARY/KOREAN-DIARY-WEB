@@ -30,5 +30,6 @@ export const useUserDetailQuery = ({
   return useQuery('user', fetchUserDetail, {
     onError,
     onSuccess,
+    retry: 5,
   })
 }

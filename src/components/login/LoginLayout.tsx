@@ -8,15 +8,16 @@ import { useNavigate } from 'react-router-dom'
 const LoginLayout = () => {
   const navigate = useNavigate()
   const { mutateAsync } = useLoginMutation({
-    onSuccess: () => {},
+    onSuccess: ({ accessToken, refreshToken }) => {
+      Cookies.set(cookieName.accessToken, accessToken)
+      Cookies.set(cookieName.refreshToken, refreshToken)
+      navigate('/')
+    },
     onError: () => {},
   })
   const responseMessage = async (response: CredentialResponse) => {
     const payload = { credential: response.credential || '' }
-    const { accessToken, refreshToken } = await mutateAsync(payload)
-    Cookies.set(cookieName.accessToken, accessToken)
-    Cookies.set(cookieName.refreshToken, refreshToken)
-    navigate('/')
+    await mutateAsync(payload)
   }
   const errorMessage = () => {
     console.log('error')

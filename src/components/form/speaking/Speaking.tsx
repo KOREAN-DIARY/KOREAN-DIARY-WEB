@@ -46,6 +46,7 @@ const Speaking = () => {
       return { url: '', score: 0 }
     }
     const file = new File([blob], 'audio.pcm')
+
     const formData = new FormData()
     formData.append('script', sentence)
     formData.append('audio', file)
