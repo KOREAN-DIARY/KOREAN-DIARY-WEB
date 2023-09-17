@@ -13,10 +13,10 @@ interface RecorderProps {
 
 enum recordStatus {
   NOT_STARTED = '녹음 시작',
-  RECORDING = '평가 중...',
+  RECORDING = '녹음 중...',
+  EVALUATING = '평가 중...',
   ENDED = '다시 녹음하기',
 }
-
 const Recorder = ({ sentence, onSuccess }: RecorderProps) => {
   const [status, setStatus] = useState<recordStatus>(recordStatus.NOT_STARTED)
   const [score, setScore] = useState(0)
@@ -52,6 +52,7 @@ const Recorder = ({ sentence, onSuccess }: RecorderProps) => {
     const formData = new FormData()
     formData.append('script', sentence)
     formData.append('audio', file)
+    setStatus(recordStatus.EVALUATING)
     const result = await mutateAsync(formData)
     await recorder?.destroy()
     const score = Math.ceil((result?.score || 0) * 20)
@@ -78,6 +79,7 @@ const Recorder = ({ sentence, onSuccess }: RecorderProps) => {
           </span>
         )
       case recordStatus.RECORDING:
+      case recordStatus.EVALUATING:
         return (
           <span
             onClick={async () => {
