@@ -40,7 +40,6 @@ const apiClient = axios.create({
 export const audioClient = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   headers: { 'Content-Type': 'multipart/form-data' },
-  withCredentials: true,
 })
 
 const setRequestConfig = (requestConfig: InternalAxiosRequestConfig) => {
@@ -58,12 +57,13 @@ const getCamelCaseResponse = (responseConfig: AxiosResponse) => {
 }
 
 const handleError = async (error: AxiosError) => {
+  const refreshToken = Cookies.get(cookieName.refreshToken)
   if (
     error.response?.status === HttpStatusCode.Unauthorized &&
-    error.config?.url !== '/token'
+    error.config?.url !== '/token' &&
+    window.location.pathname !== '/login'
   ) {
     try {
-      const refreshToken = Cookies.get(cookieName.refreshToken)
       const { data } = await apiClient.post<{ accessToken: string }>(
         '/token/refresh',
         { refreshToken }
@@ -75,7 +75,6 @@ const handleError = async (error: AxiosError) => {
       return Promise.reject(error)
     }
   }
-  return Promise.reject(error)
 }
 
 apiClient.interceptors.response.use(getCamelCaseResponse, handleError)
