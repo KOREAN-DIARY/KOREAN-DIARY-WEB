@@ -82,7 +82,9 @@ export const CalendarWrapper = styled.div`
     display: flex;
     height: 44px;
     margin-bottom: 1em;
-    color: #000000;
+    button {
+      color: #000000;
+    }
   }
   .react-calendar__navigation__label {
     font-weight: bold;
