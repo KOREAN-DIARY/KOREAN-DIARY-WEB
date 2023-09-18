@@ -44,6 +44,7 @@ export const CalendarWrapper = styled.div`
 
   abbr {
     text-decoration: none;
+    color: var(--black);
   }
 
   .react-calendar {
@@ -81,6 +82,7 @@ export const CalendarWrapper = styled.div`
     display: flex;
     height: 44px;
     margin-bottom: 1em;
+    color: var(--black);
   }
   .react-calendar__navigation__label {
     font-weight: bold;
@@ -130,7 +132,9 @@ export const CalendarWrapper = styled.div`
     background-color: #f0f0f0;
   }
   .react-calendar__tile--now {
-    color: var(--red);
+    abbr {
+      color: var(--red) !important;
+    }
   }
   .react-calendar__tile--now:enabled:hover,
   .react-calendar__tile--now:enabled:focus {
