@@ -7,6 +7,7 @@ import ChartProvider from 'hooks/context/useChartContext'
 import { useChartQuery } from 'hooks/query/useChartQuery'
 import { useUserDetailQuery } from 'hooks/query/useUserDetailQuery'
 import ProfileImg from 'components/common/profile-img/ProfileImg'
+import { logout } from 'api/index'
 
 const MyPageLayout = () => {
   const { data, isSuccess } = useUserDetailQuery({
@@ -52,7 +53,7 @@ const MyPageLayout = () => {
           <S.Title>공지사항</S.Title>
           <S.Title>고객센터</S.Title>
           <S.Title>개발자 정보</S.Title>
-          <S.Context>로그아웃</S.Context>
+          <S.Context onClick={() => logout()}>로그아웃</S.Context>
         </S.Tab>
       </S.Container>
     </BaseLayout>
