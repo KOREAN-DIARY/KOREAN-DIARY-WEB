@@ -12,7 +12,8 @@ import {
   DiaryRequestType,
   useDiaryMutation,
 } from 'hooks/query/useDiaryMutation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import CloseModal from '../close-modal/CloseModal'
 
 const steps = [
   {
@@ -61,6 +62,7 @@ const FormLayout = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const query = queryString.parse(searchParams.toString())
   const step = query?.step ? Number(query.step) : 0
+  const [closeModalOpen, setCloseModalOpen] = useState(false)
 
   const changeStep = () => {
     if (step == 4) {
@@ -77,12 +79,14 @@ const FormLayout = () => {
     }
   }
 
+  const openCloseModal = () => setCloseModalOpen(true)
+
   useEffect(() => setDiary({ ...diary, date: date || '' }), [])
 
   return (
     <S.Container>
       <S.HStack>
-        <S.CloseButton>
+        <S.CloseButton onClick={() => openCloseModal()}>
           <S.Icon className="material-icons">close</S.Icon>
         </S.CloseButton>
       </S.HStack>
@@ -96,7 +100,12 @@ const FormLayout = () => {
           <S.Icon className="material-icons">arrow_forward</S.Icon>
         </S.NextButton>
       </S.HStack>
-      {/* <CloseModal/> */}
+      {closeModalOpen && (
+        <CloseModal
+          onClose={() => setCloseModalOpen(false)}
+          onConfirm={() => navigate('/')}
+        />
+      )}
     </S.Container>
   )
 }
