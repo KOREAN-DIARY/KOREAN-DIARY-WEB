@@ -23,7 +23,7 @@ const fetchChart = async (): Promise<ResponseType<ChartType[]>> => {
 }
 
 const onError = () => {
-  console.log('get user chart error')
+  console.error('get user chart error')
 }
 
 export const useChartQuery = ({
