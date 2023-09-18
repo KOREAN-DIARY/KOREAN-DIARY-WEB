@@ -44,7 +44,7 @@ export const CalendarWrapper = styled.div`
 
   abbr {
     text-decoration: none;
-    color: var(--black);
+    color: #000000;
   }
 
   .react-calendar {
@@ -82,7 +82,7 @@ export const CalendarWrapper = styled.div`
     display: flex;
     height: 44px;
     margin-bottom: 1em;
-    color: var(--black);
+    color: #000000;
   }
   .react-calendar__navigation__label {
     font-weight: bold;
