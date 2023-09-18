@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 export const Textarea = styled.textarea`
   display: flex;
-  flex: 1;
+  height: 12.5rem;
   width: 100%;
   font-size: 0.875rem;
   text-align: left;
