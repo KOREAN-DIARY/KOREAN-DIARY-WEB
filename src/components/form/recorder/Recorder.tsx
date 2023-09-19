@@ -67,6 +67,7 @@ const Recorder = ({ sentence, onSuccess }: RecorderProps) => {
             script: sentence,
             audio: base64Audio,
           }
+          setStatus(recordStatus.EVALUATING)
           const { score } = await mutateAsync(payload)
           const fixedScore = Math.ceil((score || 0) * 20)
 

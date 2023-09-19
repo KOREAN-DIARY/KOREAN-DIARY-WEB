@@ -7,7 +7,7 @@ import Speaking from 'components/form/speaking/Speaking'
 import DayGroup from 'components/common/day-group/DayGroup'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import queryString from 'query-string'
-import { useDiaryContext } from 'hooks/context/useDiaryContext'
+import { initialDiary, useDiaryContext } from 'hooks/context/useDiaryContext'
 import {
   DiaryRequestType,
   useDiaryMutation,
@@ -55,6 +55,7 @@ const FormLayout = () => {
   const { mutateAsync } = useDiaryMutation({
     onSuccess: (data) => {
       const { speaking, writing } = data
+      setDiary(initialDiary)
       navigate(`/complete?speaking=${speaking}&writing=${writing}`)
     },
     onError: () => alert('retry'),
