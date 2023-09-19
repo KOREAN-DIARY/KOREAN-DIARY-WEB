@@ -48,7 +48,10 @@ const Recorder = ({ sentence, onSuccess }: RecorderProps) => {
     await recorder?.stopRecording()
     const blob = await recorder?.getBlob()
     if (!blob) {
-      return { url: '', score: 0 }
+      return {
+        url: '',
+        score: 0,
+      }
     }
     let blobReader: FileReader = new FileReader()
     blobReader.readAsArrayBuffer(blob)
@@ -64,13 +67,15 @@ const Recorder = ({ sentence, onSuccess }: RecorderProps) => {
             script: sentence,
             audio: base64Audio,
           }
-          const result = await mutateAsync(payload)
-          const score = Math.ceil((result?.score || 0) * 20)
-          onSuccess(score)
-          return {
-            url: URL.createObjectURL(blob),
-            score,
-          }
+          const { score } = await mutateAsync(payload)
+          const fixedScore = Math.ceil((score || 0) * 20)
+
+          onSuccess(fixedScore)
+          setScore(fixedScore)
+          setStatus(recordStatus.ENDED)
+
+          const audio = new Audio(URL.createObjectURL(blob))
+          audio.play()
         }
       )
     }
@@ -95,14 +100,7 @@ const Recorder = ({ sentence, onSuccess }: RecorderProps) => {
       case recordStatus.EVALUATING:
         return (
           <span
-            onClick={async () => {
-              await stop(sentence)
-              setScore(score)
-              setStatus(recordStatus.ENDED)
-
-              // const audio = new Audio(url)
-              // audio.play()
-            }}
+            onClick={() => stop(sentence)}
             className="material-symbols-outlined"
           >
             pause

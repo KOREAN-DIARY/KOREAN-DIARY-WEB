@@ -1,6 +1,7 @@
 import apiClient from 'api/index'
 import { ResponseType } from 'api/index'
 import { useMutation } from 'react-query'
+import snakecaseKeys from 'snakecase-keys'
 
 export type DiaryResponseType = {
   id: number
@@ -24,7 +25,7 @@ const sendDiary = async (
   try {
     const { data } = await apiClient.post<ResponseType<DiaryResponseType>>(
       '/diary',
-      body
+      snakecaseKeys(body)
     )
     return data.data
   } catch (error) {
