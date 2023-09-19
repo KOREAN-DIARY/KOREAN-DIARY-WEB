@@ -3,7 +3,6 @@ import * as S from './Speaking.style'
 import { RecordRTCPromisesHandler, invokeSaveAsDialog } from 'recordrtc'
 import { useEffect, useState } from 'react'
 import Recorder from '../recorder/Recorder'
-import { useSpeakingScoreMutation } from 'hooks/query/useSpeakingScoreMutation'
 import { useDiaryContext } from 'hooks/context/useDiaryContext'
 import AudioPlayer from '../audio-player/AudioPlayer'
 

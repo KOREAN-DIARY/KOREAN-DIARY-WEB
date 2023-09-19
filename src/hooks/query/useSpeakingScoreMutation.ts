@@ -1,4 +1,4 @@
-import { audioClient } from 'api/index'
+import apiClient, { audioClient } from 'api/index'
 import { ResponseType } from 'api/index'
 import { useMutation } from 'react-query'
 
@@ -7,9 +7,14 @@ type SpeakingResponse = {
   score: number
 }
 
-const sendAudio = async (body: FormData): Promise<SpeakingResponse> => {
+type SpeakingRequest = {
+  script: string
+  audio: string
+}
+
+const sendAudio = async (body: SpeakingRequest): Promise<SpeakingResponse> => {
   try {
-    const { data } = await audioClient.post<ResponseType<SpeakingResponse>>(
+    const { data } = await apiClient.post<ResponseType<SpeakingResponse>>(
       '/speaking',
       body
     )
@@ -19,7 +24,7 @@ const sendAudio = async (body: FormData): Promise<SpeakingResponse> => {
   }
 }
 
-export const useSpeakingScoreMutation = ({
+export const useNewSpeakingScoreMutation = ({
   onSuccess,
   onError,
 }: {

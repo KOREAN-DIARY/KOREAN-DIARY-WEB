@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import * as S from './Recorder.style'
 import { getScoreColor } from 'utils/get-score-color'
 import { RecordRTCPromisesHandler } from 'recordrtc'
-import { getRecorder } from 'utils/record'
-import { useSpeakingScoreMutation } from 'hooks/query/useSpeakingScoreMutation'
+import { getRecorder, arrayBufferToBase64 } from 'utils/record'
 import { Sentence } from '../speaking/Speaking.style'
+import toWav from 'audiobuffer-to-wav'
+import { useNewSpeakingScoreMutation } from 'hooks/query/useSpeakingScoreMutation'
 
 interface RecorderProps {
   sentence: string
@@ -22,7 +23,7 @@ const Recorder = ({ sentence, onSuccess }: RecorderProps) => {
   const [score, setScore] = useState(0)
   const [recorder, setRecorder] = useState<RecordRTCPromisesHandler>()
 
-  const { mutateAsync } = useSpeakingScoreMutation({
+  const { mutateAsync } = useNewSpeakingScoreMutation({
     onSuccess: () => {},
     onError: () => {},
   })
@@ -39,27 +40,39 @@ const Recorder = ({ sentence, onSuccess }: RecorderProps) => {
     setRecorder(newRecorder)
   }
 
-  const stop = async (
-    sentence: string
-  ): Promise<{ score: number; url: string }> => {
+  const stop = async (sentence: string) => {
+    const audioContext = new AudioContext({
+      sampleRate: 16000,
+    })
+
     await recorder?.stopRecording()
     const blob = await recorder?.getBlob()
     if (!blob) {
       return { url: '', score: 0 }
     }
-    const file = new File([blob], 'audio.pcm')
+    let blobReader: FileReader = new FileReader()
+    blobReader.readAsArrayBuffer(blob)
 
-    const formData = new FormData()
-    formData.append('script', sentence)
-    formData.append('audio', file)
-    setStatus(recordStatus.EVALUATING)
-    const result = await mutateAsync(formData)
-    await recorder?.destroy()
-    const score = Math.ceil((result?.score || 0) * 20)
-    onSuccess(score)
-    return {
-      url: URL.createObjectURL(blob),
-      score,
+    blobReader.onloadend = async (e) => {
+      let arrayBuffer = e.target?.result
+      audioContext.decodeAudioData(
+        arrayBuffer as ArrayBuffer,
+        async (resampledBuffer) => {
+          const wavBuffer = toWav(resampledBuffer)
+          const base64Audio = arrayBufferToBase64(wavBuffer)
+          const payload = {
+            script: sentence,
+            audio: base64Audio,
+          }
+          const result = await mutateAsync(payload)
+          const score = Math.ceil((result?.score || 0) * 20)
+          onSuccess(score)
+          return {
+            url: URL.createObjectURL(blob),
+            score,
+          }
+        }
+      )
     }
   }
 
@@ -83,12 +96,12 @@ const Recorder = ({ sentence, onSuccess }: RecorderProps) => {
         return (
           <span
             onClick={async () => {
-              const { url, score } = await stop(sentence)
+              await stop(sentence)
               setScore(score)
               setStatus(recordStatus.ENDED)
 
-              const audio = new Audio(url)
-              audio.play()
+              // const audio = new Audio(url)
+              // audio.play()
             }}
             className="material-symbols-outlined"
           >
