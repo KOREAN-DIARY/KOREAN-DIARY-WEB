@@ -8,6 +8,7 @@ import * as S from './Grammar.style'
 import { useDiaryContext } from 'hooks/context/useDiaryContext'
 import { useState } from 'react'
 import { DiaryType } from 'hooks/query/useDiaryListQuery'
+import Loading from 'components/loading/Loding'
 
 interface GrammarProps {
   defaultDiary?: DiaryType
@@ -57,7 +58,9 @@ const Grammar = ({ defaultDiary }: GrammarProps) => {
     onError: () => {},
   })
 
-  return (
+  return !(data && resultText) ? (
+    <Loading />
+  ) : (
     <S.GrammarWrapper>
       <S.Diary dangerouslySetInnerHTML={{ __html: resultText }}></S.Diary>
       <S.HorizontalLine />
