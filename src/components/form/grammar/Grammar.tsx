@@ -40,6 +40,13 @@ const correctDiary = (data: WritingResponse) => {
   return correctedScript
 }
 
+const gradeDiary = (data: WritingResponse) => {
+  const script = data.script.length
+  if (script < 30) return 80
+  else if (script < 50) return 90
+  else return 100
+}
+
 const Grammar = ({ defaultDiary }: GrammarProps) => {
   const [resultText, setResultText] = useState('')
   const { diary: diaryContext, setDiary } = useDiaryContext()
@@ -51,7 +58,7 @@ const Grammar = ({ defaultDiary }: GrammarProps) => {
       setDiary({
         ...diary,
         content: correctDiary(data),
-        writing: 100 - data.errorInfoList.length * 5,
+        writing: gradeDiary(data) - data.errorInfoList.length * 5,
       })
       setResultText(highlightScript(data))
     },
