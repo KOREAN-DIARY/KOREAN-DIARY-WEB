@@ -42,9 +42,43 @@ const correctDiary = (data: WritingResponse) => {
 
 const gradeDiary = (data: WritingResponse) => {
   const script = data.script.length
-  if (script < 30) return 80
-  else if (script < 50) return 90
-  else return 100
+  let score = 0
+
+  // 기본 점수
+  if (script < 30) score = 80
+  else if (script < 50) score = 90
+  else score = 100
+
+  // 감점 요인
+  data.errorInfoList.forEach((errorInfo) => {
+    const help = errorInfo.help
+    if (
+      help.includes('입력') ||
+      help.includes('겹받침') ||
+      help.includes('소리 나는 대로')
+    ) {
+      score -= 5
+    } else if (
+      help.includes('외래어') ||
+      help.includes('품사') ||
+      help.includes('한자어')
+    ) {
+      score -= 4
+    } else if (help.includes('종결')) {
+      score -= 2
+    } else if (
+      help.includes('어미') ||
+      help.includes('연결') ||
+      help.includes('조사') ||
+      help.includes('철자')
+    ) {
+      score -= 3
+    } else {
+      score -= 1
+    }
+  })
+
+  return score
 }
 
 const Grammar = ({ defaultDiary }: GrammarProps) => {
@@ -58,7 +92,7 @@ const Grammar = ({ defaultDiary }: GrammarProps) => {
       setDiary({
         ...diary,
         content: correctDiary(data),
-        writing: gradeDiary(data) - data.errorInfoList.length * 5,
+        writing: gradeDiary(data),
       })
       setResultText(highlightScript(data))
     },
